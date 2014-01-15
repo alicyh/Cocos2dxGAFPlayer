@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <string>
 #include <vector>
+#include <stack>
 
 #include <assert.h>
 #include <algorithm>

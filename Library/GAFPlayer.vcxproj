@@ -11,9 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GAFFile.cpp" />
+    <ClCompile Include="GAFLoader.cpp" />
     <ClCompile Include="GAFPrecompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GAFStream.cpp" />
+    <ClCompile Include="PrimitiveDeserializer.cpp" />
     <ClCompile Include="Sources\GAFJSONConverter.cpp" />
     <ClCompile Include="Sources\cJSON\cJSON.cpp" />
     <ClCompile Include="Sources\GAFActionObject.cpp" />
@@ -32,10 +36,21 @@
     <ClCompile Include="Sources\GAFTextureAtlas.cpp" />
     <ClCompile Include="Sources\GAFTextureAtlasElement.cpp" />
     <ClCompile Include="Sources\GAFTextureEffectsConverter.cpp" />
+    <ClCompile Include="TagDefineAnimationFrames.cpp" />
+    <ClCompile Include="TagDefineAnimationMasks.cpp" />
+    <ClCompile Include="TagDefineAnimationObjects.cpp" />
+    <ClCompile Include="TagDefineAtlas.cpp" />
+    <ClCompile Include="TagDefineNamedParts.cpp" />
+    <ClCompile Include="TagDefineSequences.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DefinitionTagBase.h" />
+    <ClInclude Include="GAFFile.h" />
     <ClInclude Include="GAFHeader.h" />
+    <ClInclude Include="GAFLoader.h" />
     <ClInclude Include="GAFPrecompiled.h" />
+    <ClInclude Include="GAFStream.h" />
+    <ClInclude Include="PrimitiveDeserializer.h" />
     <ClInclude Include="Sources\GAFJSONConverter.h" />
     <ClInclude Include="Sources\GAFJSONData.h" />
     <ClInclude Include="Sources\cJSON\cJSON.h" />
@@ -60,6 +75,13 @@
     <ClInclude Include="Sources\ShadersPrecompiled\GaussianBlur.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\kGAFScrollLayerAlphaFilterProgramCacheKey.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\kGAFSpriteWithAlphaShaderProgramCache.h" />
+    <ClInclude Include="TagDefineAnimationFrames.h" />
+    <ClInclude Include="TagDefineAnimationMasks.h" />
+    <ClInclude Include="TagDefineAnimationObjects.h" />
+    <ClInclude Include="TagDefineAtlas.h" />
+    <ClInclude Include="TagDefineNamedParts.h" />
+    <ClInclude Include="TagDefines.h" />
+    <ClInclude Include="TagDefineSequences.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4E240210-2D26-4D4C-9329-E912FDAC94CC}</ProjectGuid>

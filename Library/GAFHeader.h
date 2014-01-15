@@ -15,5 +15,7 @@ public:
     Compression     compression;
     unsigned short  version;
     unsigned int    fileLenght;
-    //CCRect          frameSize;
+    unsigned short  framesCount;
+    CCRect          frameSize;
+    CCPoint         pivot;
 };

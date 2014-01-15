@@ -3,7 +3,6 @@
 #ifndef __GAF_TEXTURE_ATLAS___
 #define __GAF_TEXTURE_ATLAS___
 
-#include "cocoa/CCObject.h"
 
 namespace cocos2d
 {

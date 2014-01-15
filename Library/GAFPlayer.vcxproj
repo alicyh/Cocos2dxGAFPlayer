@@ -11,7 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\CCJSONConverter.cpp" />
+    <ClCompile Include="GAFPrecompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Sources\GAFJSONConverter.cpp" />
     <ClCompile Include="Sources\cJSON\cJSON.cpp" />
     <ClCompile Include="Sources\GAFActionObject.cpp" />
     <ClCompile Include="Sources\GAFAnimatedObject.cpp" />
@@ -31,8 +34,10 @@
     <ClCompile Include="Sources\GAFTextureEffectsConverter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\CCJSONConverter.h" />
-    <ClInclude Include="Sources\CCJSONData.h" />
+    <ClInclude Include="GAFHeader.h" />
+    <ClInclude Include="GAFPrecompiled.h" />
+    <ClInclude Include="Sources\GAFJSONConverter.h" />
+    <ClInclude Include="Sources\GAFJSONData.h" />
     <ClInclude Include="Sources\cJSON\cJSON.h" />
     <ClInclude Include="Sources\GAFActionObject.h" />
     <ClInclude Include="Sources\GAFAnimatedObject.h" />
@@ -88,12 +93,12 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\cocos2dx\include;..\..\..\cocos2dx\;..\..\..\cocos2dx\platform\win32;..\..\..\cocos2dx\platform\third_party\win32;..\..\..\cocos2dx\platform\third_party\win32\OGLES;..\..\..\cocos2dx\kazmath\include;..\..\..\extensions;Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile />
+      <PrecompiledHeaderFile>GAFPrecompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

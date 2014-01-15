@@ -1,8 +1,6 @@
+#include "GAFPrecompiled.h"
 #include "GAFShaderManager.h"
 #include "GAFData.h"
-
-#include "platform/CCFileUtils.h"
-#include "shaders/CCGLProgram.h"
 
 
 CCGLProgram * GAFShaderManager::createWithFragmentFilename(const char * vertexSource, const char * fragmentFilename, CCGLProgram * p)

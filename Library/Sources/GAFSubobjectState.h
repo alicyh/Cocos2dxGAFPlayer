@@ -3,10 +3,6 @@
 #ifndef __GAF_SUBOBJECT_STATE__
 #define __GAF_SUBOBJECT_STATE__
 
-#include "cocoa/CCObject.h"
-#include "cocoa/CCAffineTransform.h"
-
-#include <string>
 namespace cocos2d
 {
     class CCDictionary;

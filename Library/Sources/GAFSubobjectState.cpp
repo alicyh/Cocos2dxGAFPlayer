@@ -1,12 +1,7 @@
+#include "GAFPrecompiled.h"
 #include "GAFSubobjectState.h"
 #include "GAFFilterData.h"
 #include "GAFAsset.h"
-
-#include "cocoa/CCDictionary.h"
-
-#include <vector>
-#include <algorithm>
-#include <sstream>
 
 static const char * kStateName = "st";
 static const char * kColorName = "c";

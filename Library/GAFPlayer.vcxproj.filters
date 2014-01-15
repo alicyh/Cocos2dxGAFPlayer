@@ -10,11 +10,11 @@
     <Filter Include="Sources\ShadersPrecompiled">
       <UniqueIdentifier>{1169a39c-df34-4412-b3ee-3384e0c77c91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\GAFLoader">
+      <UniqueIdentifier>{115306cb-607c-4b40-ac82-0bd0c53c1293}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\CCJSONConverter.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\GAFActionObject.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -66,14 +66,14 @@
     <ClCompile Include="Sources\cJSON\cJSON.cpp">
       <Filter>Sources\cJSON</Filter>
     </ClCompile>
+    <ClCompile Include="GAFPrecompiled.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GAFJSONConverter.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\CCJSONConverter.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\CCJSONData.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\GAFActionObject.h">
       <Filter>Sources</Filter>
     </ClInclude>
@@ -139,6 +139,18 @@
     </ClInclude>
     <ClInclude Include="Sources\cJSON\cJSON.h">
       <Filter>Sources\cJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="GAFHeader.h">
+      <Filter>Sources\GAFLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="GAFPrecompiled.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GAFJSONConverter.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GAFJSONData.h">
+      <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

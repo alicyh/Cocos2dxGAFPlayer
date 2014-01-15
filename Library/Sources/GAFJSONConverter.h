@@ -3,14 +3,14 @@
 #ifndef __CCJSONCONVERTER__H__
 #define __CCJSONCONVERTER__H__
 
-#include "CCJSONData.h"
+#include "GAFJSONData.h"
 
 struct cJSON;
 
-class CCJSONConverter : public CCObject {
+class GAFJSONConverter : public CCObject {
 
 public:
-    static CCJSONConverter * sharedConverter();
+    static GAFJSONConverter * sharedConverter();
 
     char * strFrom(CCDictionary * dictionary);
 

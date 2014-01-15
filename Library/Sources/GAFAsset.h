@@ -3,10 +3,6 @@
 #ifndef __GAF_ASSET_H__
 #define __GAF_ASSET_H__
 
-#include "cocoa/CCObject.h"
-#include <string>
-#include <vector>
-
 namespace cocos2d
 {
     class CCDictionary;

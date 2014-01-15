@@ -1,9 +1,7 @@
+#include "GAFPrecompiled.h"
 #include "GAFAnimationFrame.h"
 #include "GAFSubobjectState.h"
 #include "GAFTextureAtlas.h"
-#include "cocoa/CCArray.h"
-#include "cocoa/CCDictionary.h"
-
 
 GAFAnimationFrame::GAFAnimationFrame()
 :

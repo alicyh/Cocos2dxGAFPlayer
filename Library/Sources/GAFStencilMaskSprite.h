@@ -5,8 +5,6 @@
 
 #include "GAFSprite.h"
 
-
-
 namespace cocos2d
 {
     class CCArray;

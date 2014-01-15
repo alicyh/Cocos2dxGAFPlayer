@@ -1,3 +1,4 @@
+#include "GAFPrecompiled.h"
 #include "GAFFilterData.h"
 
 GAFBlurFilterData * GAFBlurFilterData::create(float bX, float bY)

@@ -3,9 +3,6 @@
 #ifndef __GAF_TEXTURE_ATLAS_ELEMENT__
 #define __GAF_TEXTURE_ATLAS_ELEMENT__
 
-#include <string>
-#include "cocoa/CCGeometry.h"
-
 namespace cocos2d
 {
     class CCDictionary;

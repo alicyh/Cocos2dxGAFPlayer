@@ -1,6 +1,7 @@
+#include "GAFPrecompiled.h"
 #include "GAFAsset.h"
 #include "GAFData.h"
-#include "CCJSONConverter.h"
+#include "GAFJSONConverter.h"
 #include "GAFTextureAtlas.h"
 #include "GAFTextureAtlasElement.h"
 #include "GAFAnimationFrame.h"
@@ -9,13 +10,7 @@
 #include "GAFActionObject.h"
 #include "GAFAnimationSequence.h"
 #include "GAFAnimatedObject.h"
-#include "platform/CCFileUtils.h"
-#include "cocoa/CCInteger.h"
-#include "cocoa/CCArray.h"
-#include "cocoa/CCDictionary.h"
 
-#include "ccMacros.h"
-#include "CCDirector.h"
 
 static const char *  kAnimationFrameCountKey = "animationFrameCount";
 static const char *  kAnimationConfigFramesKey = "animationConfigFrames";
@@ -146,7 +141,7 @@ bool GAFAsset::initWithImageData(const std::string& jsonPath)
         return false;
     }
 
-    CCDictionary* configDictionary = CCJSONConverter::sharedConverter()->dictionaryFrom((const char *)aConfigData.getBytes());
+    CCDictionary* configDictionary = GAFJSONConverter::sharedConverter()->dictionaryFrom((const char *)aConfigData.getBytes());
 
     CCString *versionNode = (CCString*)configDictionary->objectForKey(kVersionKey);
 

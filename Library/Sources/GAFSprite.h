@@ -3,10 +3,6 @@
 #ifndef __GAF_SPRITE__
 #define __GAF_SPRITE__
 
-#include "sprite_nodes/CCSprite.h"
-#include "cocoa/CCAffineTransform.h"
-#include <string>
-
 typedef struct _gafBlendFuncSeparate
 {
     // source blend function

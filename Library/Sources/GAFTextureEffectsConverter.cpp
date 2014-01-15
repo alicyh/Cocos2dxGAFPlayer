@@ -1,8 +1,5 @@
+#include "GAFPrecompiled.h"
 #include "GAFTextureEffectsConverter.h"
-#include "misc_nodes/CCRenderTexture.h"
-#include "shaders/CCGLProgram.h"
-#include "shaders/CCShaderCache.h"
-#include "cocoa/CCDictionary.h"
 #include "GAFShaderManager.h"
 
 GAFTextureEffectsConverter::GAFTextureEffectsConverter()

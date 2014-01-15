@@ -3,8 +3,6 @@
 #ifndef __CCJSONDATA_H__
 #define __CCJSONDATA_H__
 
-#include "cocoa/CCObject.h"
-
 using namespace cocos2d;
 
 class CCNumber : public CCObject {

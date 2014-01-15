@@ -3,8 +3,6 @@
 #ifndef __GAF_ANIMATION_FRAME__
 #define __GAF_ANIMATION_FRAME__
 
-#include "cocoa/CCObject.h"
-
 namespace cocos2d
 {
     class CCDictionary;

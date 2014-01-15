@@ -1,3 +1,4 @@
+#include "GAFPrecompiled.h"
 #include "GAFAsset.h"
 #include "GAFAnimatedObject.h"
 #include "GAFTextureAtlas.h"
@@ -7,17 +8,6 @@
 #include "GAFSpriteWithAlpha.h"
 #include "GAFStencilMaskSprite.h"
 #include "GAFFilterData.h"
-
-#include "CCDirector.h"
-#include "cocoa/CCDictionary.h"
-#include "cocoa/CCInteger.h"
-#include "textures/CCTexture2D.h"
-#include "sprite_nodes/CCSpriteFrame.h"
-#include <limits>
-
-#include "support/CCPointExtension.h"
-#include <algorithm>
-
 
 #ifdef max
 #undef max

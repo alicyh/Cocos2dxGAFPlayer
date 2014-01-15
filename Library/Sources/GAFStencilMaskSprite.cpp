@@ -1,8 +1,6 @@
+#include "GAFPrecompiled.h"
 #include "GAFStencilMaskSprite.h"
 #include "GAFShaderManager.h"
-#include "shaders/CCShaderCache.h"
-#include "shaders/ccShaders.h"
-#include <algorithm>
 
 static const char * kPCStencilMaskAlphaFilterFragmentShaderFilename = "Shaders/pcShader_PositionTexture_alphaFilter.fs";
 

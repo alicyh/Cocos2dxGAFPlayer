@@ -1,10 +1,8 @@
+#include "GAFPrecompiled.h"
 #include "GAFAnimation.h"
 #include "GAFAnimationSequence.h"
 #include "GAFAsset.h"
 #include "GAFAnimatedObject.h"
-#include "ccMacros.h"
-#include "cocoa/CCDictionary.h"
-#include "cocoa/CCInteger.h"
 
 GAFAnimation::GAFAnimation()
 :

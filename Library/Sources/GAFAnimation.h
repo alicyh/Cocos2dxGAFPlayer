@@ -3,9 +3,6 @@
 #ifndef __GAF_ANIMATION__
 #define __GAF_ANIMATION__
 
-#include "cocoa/CCObject.h"
-#include <string>
-
 #define GAF_FIRST_FRAME_INDEX 0
 
 class GAFAsset;

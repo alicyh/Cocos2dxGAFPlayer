@@ -1,8 +1,7 @@
+#include "GAFPrecompiled.h"
 #include "GAFTextureAtlasElement.h"
 
-#include "cocoa/CCInteger.h"
-#include "CCJSONData.h"
-#include "cocoa/CCDictionary.h"
+#include "GAFJSONData.h"
 
 static const char * kNameKey = "name";
 static const char * kXKey = "x";

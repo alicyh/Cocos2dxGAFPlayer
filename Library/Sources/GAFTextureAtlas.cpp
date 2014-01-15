@@ -1,16 +1,9 @@
+#include "GAFPrecompiled.h"
 #include "GAFTextureAtlas.h"
 #include "GAFTextureAtlasElement.h"
 #include "GAFAsset.h"
-
-#include "platform/CCImage.h"
-#include "textures/CCTexture2D.h"
-#include "cocoa/CCArray.h"
-#include "cocoa/CCDictionary.h"
-#include "platform/CCFileUtils.h"
 #include "cocoa/CCInteger.h"
-#include "CCJSONData.h"
-
-#include <algorithm>
+#include "GAFJSONData.h"
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
 #include "textures/CCTextureCache.h"

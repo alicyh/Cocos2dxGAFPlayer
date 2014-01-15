@@ -3,10 +3,6 @@
 #ifndef __GAF_BLURRED_SPRITE___
 #define __GAF_BLURRED_SPRITE___
 
-
-#include "cocoa/CCObject.h"
-#include "cocoa/CCGeometry.h"
-
 namespace cocos2d
 {
     class CCTexture2D;

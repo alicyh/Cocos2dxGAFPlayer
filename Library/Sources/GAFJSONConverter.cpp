@@ -1,13 +1,12 @@
-#include "cocoa/CCArray.h"
-#include "cocoa/CCDictionary.h"
-#include "cocoa/CCBool.h"
+#include "GAFPrecompiled.h"
+
 #include "cJSON/cJSON.h"
-#include "CCJSONConverter.h"
+#include "GAFJSONConverter.h"
 #include <typeinfo>
 
-static CCJSONConverter _sharedConverter;
+static GAFJSONConverter _sharedConverter;
 
-CCJSONConverter * CCJSONConverter::sharedConverter()
+GAFJSONConverter * GAFJSONConverter::sharedConverter()
 {
     static bool firstUse = true;
     if (firstUse)
@@ -17,7 +16,7 @@ CCJSONConverter * CCJSONConverter::sharedConverter()
     return &_sharedConverter;
 }
 
-char * CCJSONConverter::strFrom(CCDictionary *dictionary)
+char * GAFJSONConverter::strFrom(CCDictionary *dictionary)
 {
     CCAssert(dictionary, "CCJSONConverter:can not convert a null pointer");
     cJSON * json = cJSON_CreateObject();
@@ -25,7 +24,7 @@ char * CCJSONConverter::strFrom(CCDictionary *dictionary)
     return cJSON_Print(json);
 }
 
-CCDictionary * CCJSONConverter::dictionaryFrom(const char *str)
+CCDictionary * GAFJSONConverter::dictionaryFrom(const char *str)
 {
     cJSON * json = cJSON_Parse(str);
     CCAssert(json && json->type == cJSON_Object, "CCJSONConverter:wrong json format");
@@ -38,7 +37,7 @@ CCDictionary * CCJSONConverter::dictionaryFrom(const char *str)
     return dictionary;
 }
 
-void CCJSONConverter::convertJsonToDictionary(cJSON *json, CCDictionary *dictionary)
+void GAFJSONConverter::convertJsonToDictionary(cJSON *json, CCDictionary *dictionary)
 {
     dictionary->removeAllObjects();
     cJSON * j = json->child;
@@ -50,7 +49,7 @@ void CCJSONConverter::convertJsonToDictionary(cJSON *json, CCDictionary *diction
     }
 }
 
-void CCJSONConverter::convertDictionaryToJson(CCDictionary *dictionary, cJSON *json)
+void GAFJSONConverter::convertDictionaryToJson(CCDictionary *dictionary, cJSON *json)
 {
     CCDictElement * pElement = NULL;
     CCDICT_FOREACH(dictionary, pElement){
@@ -60,7 +59,7 @@ void CCJSONConverter::convertDictionaryToJson(CCDictionary *dictionary, cJSON *j
     }
 }
 
-void CCJSONConverter::convertJsonToArray(cJSON * json, CCArray * array)
+void GAFJSONConverter::convertJsonToArray(cJSON * json, CCArray * array)
 {
     array->removeAllObjects();
     int size = cJSON_GetArraySize(json);
@@ -72,7 +71,7 @@ void CCJSONConverter::convertJsonToArray(cJSON * json, CCArray * array)
     }
 }
 
-void CCJSONConverter::convertArrayToJson(CCArray * array, cJSON * json)
+void GAFJSONConverter::convertArrayToJson(CCArray * array, cJSON * json)
 {
     CCObject * obj = NULL;
     CCARRAY_FOREACH(array, obj){
@@ -81,7 +80,7 @@ void CCJSONConverter::convertArrayToJson(CCArray * array, cJSON * json)
     }
 }
 
-cJSON * CCJSONConverter::getObjJson(CCObject * obj)
+cJSON * GAFJSONConverter::getObjJson(CCObject * obj)
 {
     std::string s = typeid(*obj).name();
     if (s.find("CCDictionary") != std::string::npos){
@@ -125,7 +124,7 @@ cJSON * CCJSONConverter::getObjJson(CCObject * obj)
 
 //NOTE: because of memory issues on windows phone, here we dont use 'autorelease'
 //so caller need to release result object!
-CCObject * CCJSONConverter::getJsonObj(cJSON * json)
+CCObject * GAFJSONConverter::getJsonObj(cJSON * json)
 {
     switch (json->type) {
     case cJSON_Object:

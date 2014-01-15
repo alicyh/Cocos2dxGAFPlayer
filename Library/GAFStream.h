@@ -32,6 +32,8 @@ public:
     float                readFixed();
     float                readFixed8();
 
+    float                readFloat();
+
     uint8_t              readUByte();
     int8_t               readSByte();
 

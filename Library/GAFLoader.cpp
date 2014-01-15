@@ -77,6 +77,8 @@ bool GAFLoader::loadFile(const std::string& fname, GAFAsset* context)
             {
                 //! TODO: show warning
             }
+
+            m_stream->closeTag();
         }
 
         delete m_stream;

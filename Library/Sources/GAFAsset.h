@@ -80,6 +80,9 @@ private:
     CCDictionary   * _animationSequences;
 
     CCDictionary   * _namedParts;
+
+    //////////////
+
 };
 
 

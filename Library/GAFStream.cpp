@@ -214,3 +214,8 @@ bool GAFStream::isEndOfStream() const
 {
     return m_input->isEOF();
 }
+
+float GAFStream::readFloat()
+{
+    return m_input->readFloat();
+}

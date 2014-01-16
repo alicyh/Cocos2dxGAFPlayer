@@ -233,4 +233,5 @@ void GAFTextureAtlas::pushAtlasInfo(const AtlasInfo& ai)
 void GAFTextureAtlas::pushElement(unsigned int idx, GAFTextureAtlasElement* el)
 {
     m_elements[idx] = el;
+    el->retain();
 }

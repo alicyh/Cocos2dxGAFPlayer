@@ -19,10 +19,15 @@ class GAFLoader;
 class GAFAsset : public CCObject
 {
 public:
+
     typedef std::list<GAFTextureAtlas*> TextureAtlases_t;
+    typedef std::map<unsigned int, unsigned int> AnimationMasks_t;
+    typedef std::map<unsigned int, unsigned int> AnimationObjects_t;
 
 private:
     TextureAtlases_t        m_textureAtlases;
+    AnimationMasks_t        m_animationMasks;
+    AnimationObjects_t      m_animationObjects;
 
 private:
     void loadAnimationSequences(CCArray * aSequencesNodes);
@@ -57,6 +62,8 @@ public:
     bool  initWithGAFFile(const std::string& filePath);
 
     void                    pushTextureAtlas(GAFTextureAtlas* atlas);
+    void                    pushAnimationMask(unsigned int objectId, unsigned int elementAtlasIdRef);
+    void                    pushAnimationObjects(unsigned int objectId, unsigned int elementAtlasIdRef);
 
     GAFAsset();
     ~GAFAsset();

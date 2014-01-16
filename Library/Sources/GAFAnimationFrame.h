@@ -10,11 +10,19 @@ namespace cocos2d
 }
 
 class GAFTextureAtlas;
+class GAFSubobjectState;
 
 using namespace cocos2d;
 
 class GAFAnimationFrame : public CCObject
 {
+public:
+    typedef std::list<GAFSubobjectState*> SubobjectStates_t;
+private:
+    SubobjectStates_t       m_subObjectStates;
+
+    CCArray * _initialInstructions;
+    CCArray * _objectsStates;
 public:
     GAFAnimationFrame();
     ~GAFAnimationFrame();
@@ -22,9 +30,6 @@ public:
     //bool init(CCDictionary * aDictionary, GAFTextureAtlas * aTextureAtlas);
     CCArray * objectStates();
     void setObjectStates(CCArray * states);
-private:
-    CCArray * _initialInstructions;
-    CCArray * _objectsStates;
 };
 
 #endif // __GAF_ANIMATION_FRAME__

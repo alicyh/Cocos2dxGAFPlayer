@@ -477,4 +477,15 @@ CCDictionary* GAFAsset::getSequences() const
 void GAFAsset::pushTextureAtlas(GAFTextureAtlas* atlas)
 {
     m_textureAtlases.push_back(atlas);
+    atlas->retain();
+}
+
+void GAFAsset::pushAnimationMask(unsigned int objectId, unsigned int elementAtlasIdRef)
+{
+    m_animationMasks[objectId] = elementAtlasIdRef;
+}
+
+void GAFAsset::pushAnimationObjects(unsigned int objectId, unsigned int elementAtlasIdRef)
+{
+    m_animationObjects[objectId] = elementAtlasIdRef;
 }

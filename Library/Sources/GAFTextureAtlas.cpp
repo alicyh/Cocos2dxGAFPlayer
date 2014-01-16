@@ -21,7 +21,8 @@ GAFTextureAtlas::GAFTextureAtlas()
 _loaded(false),
 _images(NULL),
 _textures(NULL),
-_elements(NULL)
+_elements(NULL),
+m_scale(1.f)
 {
 }
 
@@ -44,6 +45,20 @@ GAFTextureAtlas * GAFTextureAtlas::create(const char * aTexturesDirectory, CCDic
     return NULL;
 }
 
+GAFTextureAtlas* GAFTextureAtlas::create()
+{
+    GAFTextureAtlas *pRet = new GAFTextureAtlas();
+
+    if (pRet->init())
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+
+    CC_SAFE_DELETE(pRet);
+    return NULL;
+}
+
 static bool compare_atlases(const void* p1, const void* p2)
 {
     CCDictionary* a1 = (CCDictionary*)p1;
@@ -54,6 +69,10 @@ static bool compare_atlases(const void* p1, const void* p2)
     return id1->getValue() < id2->getValue();
 }
 
+bool GAFTextureAtlas::init()
+{
+    return true;
+}
 
 bool GAFTextureAtlas::init(const char * aTexturesDirectory, CCDictionary * aTextureAtlasConfigDictionary)
 {
@@ -194,4 +213,24 @@ CCArray * GAFTextureAtlas::textures()
         _textures->retain();
     }
     return _textures;
+}
+
+void GAFTextureAtlas::setScale(float val)
+{
+    m_scale = val;
+}
+
+float GAFTextureAtlas::getScale() const
+{
+    return m_scale;
+}
+
+void GAFTextureAtlas::pushAtlasInfo(const AtlasInfo& ai)
+{
+    m_atlasInfos.push_back(ai);
+}
+
+void GAFTextureAtlas::pushElement(unsigned int idx, GAFTextureAtlasElement* el)
+{
+    m_elements[idx] = el;
 }

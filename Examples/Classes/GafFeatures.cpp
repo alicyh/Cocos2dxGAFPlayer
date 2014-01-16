@@ -163,6 +163,9 @@ bool GafFeatures::init()
     addChild(pMenu, 10000);
     m_anim_index = 0;
 
+    GAFAsset* bAsset = new GAFAsset();
+    bAsset->initWithGAFFile("simpleTest.gaf");
+
     m_jsons.push_back("SampleAnimations/2/2.json");
     m_jsons.push_back("SampleAnimations/1/1.json");
     m_jsons.push_back("SampleAnimations/3/3.json");

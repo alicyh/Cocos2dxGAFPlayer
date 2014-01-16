@@ -89,11 +89,11 @@ bool GAFFile::isEOF() const
 
 unsigned int GAFFile::readString(std::string* str)
 {
-    assert(m_dataPosition - m_dataLen >= sizeof(short));
+    assert(m_dataPosition + sizeof(short) <= m_dataLen);
 
     unsigned short len = read2Bytes();
 
-    assert(m_dataPosition - m_dataLen >= len);
+    assert(m_dataPosition + len <= m_dataLen);
 
     char* data = new char[len];
     readBytes(data, len); //! WARN. Possible optimization here. We are able to read from m_data directly
@@ -134,8 +134,8 @@ bool GAFFile::open(const std::string& filename, const char* openMode)
     {
         _readHeaderBegin(m_header);
 
-        //! 8 - is size of sizeof(Signature) + sizeof(FileLen)
-        static const uint32_t UncompressedDataSize = 8;
+        //! 10 - is size of sizeof(Footprint) + sizeof(FileLen) + sizeof(Version)
+        static const uint32_t UncompressedDataSize = 10;
 
         assert(m_dataPosition == UncompressedDataSize); //! Paranoid mode
 

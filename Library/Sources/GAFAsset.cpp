@@ -11,6 +11,7 @@
 #include "GAFAnimationSequence.h"
 #include "GAFAnimatedObject.h"
 
+#include "GAFLoader.h"
 
 static const char *  kAnimationFrameCountKey = "animationFrameCount";
 static const char *  kAnimationConfigFramesKey = "animationConfigFrames";
@@ -119,6 +120,20 @@ float GAFAsset::atlasScaleFromAtlasConfig(CCDictionary * anAtlasConfigDictionary
     }
     CCNumber * scale = (CCNumber *)anAtlasConfigDictionary->objectForKey(kAtlasScaleKey);
     return static_cast<float>(scale->getDoubleValue());
+}
+
+bool GAFAsset::initWithGAFFile(const std::string& filePath)
+{
+    GAFLoader* loader = new GAFLoader();
+
+    bool isLoaded = loader->loadFile(filePath, this);
+
+    if (isLoaded)
+    {
+
+    }
+
+    return isLoaded;
 }
 
 bool GAFAsset::initWithImageData(const std::string& jsonPath)
@@ -457,4 +472,9 @@ GAFAnimationSequence * GAFAsset::getSequenceByLastFrame(int frame)
 CCDictionary* GAFAsset::getSequences() const
 {
     return _animationSequences;
+}
+
+void GAFAsset::pushTextureAtlas(GAFTextureAtlas* atlas)
+{
+    m_textureAtlases.push_back(atlas);
 }

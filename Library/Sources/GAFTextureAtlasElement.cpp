@@ -30,6 +30,23 @@ GAFTextureAtlasElement * GAFTextureAtlasElement::create(CCDictionary * aDictiona
     return NULL;
 }
 
+GAFTextureAtlasElement* GAFTextureAtlasElement::create()
+{
+    GAFTextureAtlasElement * ret = new GAFTextureAtlasElement();
+    if (ret && ret->init())
+    {
+        ret->autorelease();
+        return ret;
+    }
+    CC_SAFE_DELETE(ret);
+    return NULL;
+}
+
+bool GAFTextureAtlasElement::init()
+{
+    return true;
+}
+
 bool GAFTextureAtlasElement::initWithDictionary(CCDictionary * aDictionary)
 {
     CCString * jName = (CCString*)aDictionary->objectForKey(kNameKey);

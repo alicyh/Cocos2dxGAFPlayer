@@ -19,6 +19,11 @@ public:
     float       scale;
     unsigned int atlasIdx;
 
+    unsigned int elementAtlasIdx;
+
+    static GAFTextureAtlasElement*   create();
+    bool                             init();
+
     static GAFTextureAtlasElement * create(CCDictionary * aDictionary);
     bool initWithDictionary(CCDictionary * aDictionary);
 private:

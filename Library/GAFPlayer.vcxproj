@@ -11,13 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GAFFile.cpp" />
-    <ClCompile Include="GAFLoader.cpp" />
     <ClCompile Include="GAFPrecompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="GAFStream.cpp" />
-    <ClCompile Include="PrimitiveDeserializer.cpp" />
+    <ClCompile Include="Sources\GAFFile.cpp" />
     <ClCompile Include="Sources\GAFJSONConverter.cpp" />
     <ClCompile Include="Sources\cJSON\cJSON.cpp" />
     <ClCompile Include="Sources\GAFActionObject.cpp" />
@@ -28,29 +25,29 @@
     <ClCompile Include="Sources\GAFAsset.cpp" />
     <ClCompile Include="Sources\GAFFilterData.cpp" />
     <ClCompile Include="Sources\GAFInteractionObject.cpp" />
+    <ClCompile Include="Sources\GAFLoader.cpp" />
     <ClCompile Include="Sources\GAFShaderManager.cpp" />
     <ClCompile Include="Sources\GAFSprite.cpp" />
     <ClCompile Include="Sources\GAFSpriteWithAlpha.cpp" />
     <ClCompile Include="Sources\GAFStencilMaskSprite.cpp" />
+    <ClCompile Include="Sources\GAFStream.cpp" />
     <ClCompile Include="Sources\GAFSubobjectState.cpp" />
     <ClCompile Include="Sources\GAFTextureAtlas.cpp" />
     <ClCompile Include="Sources\GAFTextureAtlasElement.cpp" />
     <ClCompile Include="Sources\GAFTextureEffectsConverter.cpp" />
-    <ClCompile Include="TagDefineAnimationFrames.cpp" />
-    <ClCompile Include="TagDefineAnimationMasks.cpp" />
-    <ClCompile Include="TagDefineAnimationObjects.cpp" />
-    <ClCompile Include="TagDefineAtlas.cpp" />
-    <ClCompile Include="TagDefineNamedParts.cpp" />
-    <ClCompile Include="TagDefineSequences.cpp" />
+    <ClCompile Include="Sources\PrimitiveDeserializer.cpp" />
+    <ClCompile Include="Sources\TagDefineAnimationFrames.cpp" />
+    <ClCompile Include="Sources\TagDefineAnimationMasks.cpp" />
+    <ClCompile Include="Sources\TagDefineAnimationObjects.cpp" />
+    <ClCompile Include="Sources\TagDefineAtlas.cpp" />
+    <ClCompile Include="Sources\TagDefineNamedParts.cpp" />
+    <ClCompile Include="Sources\TagDefineSequences.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DefinitionTagBase.h" />
-    <ClInclude Include="GAFFile.h" />
-    <ClInclude Include="GAFHeader.h" />
-    <ClInclude Include="GAFLoader.h" />
     <ClInclude Include="GAFPrecompiled.h" />
-    <ClInclude Include="GAFStream.h" />
-    <ClInclude Include="PrimitiveDeserializer.h" />
+    <ClInclude Include="Sources\DefinitionTagBase.h" />
+    <ClInclude Include="Sources\GAFFile.h" />
+    <ClInclude Include="Sources\GAFHeader.h" />
     <ClInclude Include="Sources\GAFJSONConverter.h" />
     <ClInclude Include="Sources\GAFJSONData.h" />
     <ClInclude Include="Sources\cJSON\cJSON.h" />
@@ -63,25 +60,28 @@
     <ClInclude Include="Sources\GAFData.h" />
     <ClInclude Include="Sources\GAFFilterData.h" />
     <ClInclude Include="Sources\GAFInteractionObject.h" />
+    <ClInclude Include="Sources\GAFLoader.h" />
     <ClInclude Include="Sources\GAFShaderManager.h" />
     <ClInclude Include="Sources\GAFSprite.h" />
     <ClInclude Include="Sources\GAFSpriteWithAlpha.h" />
     <ClInclude Include="Sources\GAFStencilMaskSprite.h" />
+    <ClInclude Include="Sources\GAFStream.h" />
     <ClInclude Include="Sources\GAFSubobjectState.h" />
     <ClInclude Include="Sources\GAFTextureAtlas.h" />
     <ClInclude Include="Sources\GAFTextureAtlasElement.h" />
     <ClInclude Include="Sources\GAFTextureEffectsConverter.h" />
+    <ClInclude Include="Sources\PrimitiveDeserializer.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\GAFPrecompiledShaders.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\GaussianBlur.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\kGAFScrollLayerAlphaFilterProgramCacheKey.h" />
     <ClInclude Include="Sources\ShadersPrecompiled\kGAFSpriteWithAlphaShaderProgramCache.h" />
-    <ClInclude Include="TagDefineAnimationFrames.h" />
-    <ClInclude Include="TagDefineAnimationMasks.h" />
-    <ClInclude Include="TagDefineAnimationObjects.h" />
-    <ClInclude Include="TagDefineAtlas.h" />
-    <ClInclude Include="TagDefineNamedParts.h" />
-    <ClInclude Include="TagDefines.h" />
-    <ClInclude Include="TagDefineSequences.h" />
+    <ClInclude Include="Sources\TagDefineAnimationFrames.h" />
+    <ClInclude Include="Sources\TagDefineAnimationMasks.h" />
+    <ClInclude Include="Sources\TagDefineAnimationObjects.h" />
+    <ClInclude Include="Sources\TagDefineAtlas.h" />
+    <ClInclude Include="Sources\TagDefineNamedParts.h" />
+    <ClInclude Include="Sources\TagDefines.h" />
+    <ClInclude Include="Sources\TagDefineSequences.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4E240210-2D26-4D4C-9329-E912FDAC94CC}</ProjectGuid>

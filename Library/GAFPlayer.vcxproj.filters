@@ -75,35 +75,35 @@
     <ClCompile Include="Sources\GAFJSONConverter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="GAFFile.cpp">
+    <ClCompile Include="Sources\TagDefineAnimationFrames.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TagDefineAnimationMasks.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TagDefineAnimationObjects.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TagDefineAtlas.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TagDefineNamedParts.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TagDefineSequences.cpp">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GAFFile.cpp">
       <Filter>Sources\GAFLoader</Filter>
     </ClCompile>
-    <ClCompile Include="GAFStream.cpp">
+    <ClCompile Include="Sources\GAFLoader.cpp">
       <Filter>Sources\GAFLoader</Filter>
     </ClCompile>
-    <ClCompile Include="GAFLoader.cpp">
+    <ClCompile Include="Sources\GAFStream.cpp">
       <Filter>Sources\GAFLoader</Filter>
     </ClCompile>
-    <ClCompile Include="PrimitiveDeserializer.cpp">
+    <ClCompile Include="Sources\PrimitiveDeserializer.cpp">
       <Filter>Sources\GAFLoader</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineAtlas.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineAnimationMasks.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineAnimationObjects.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineAnimationFrames.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineNamedParts.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClCompile>
-    <ClCompile Include="TagDefineSequences.cpp">
-      <Filter>Sources\GAFLoader\Tags</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,9 +173,6 @@
     <ClInclude Include="Sources\cJSON\cJSON.h">
       <Filter>Sources\cJSON</Filter>
     </ClInclude>
-    <ClInclude Include="GAFHeader.h">
-      <Filter>Sources\GAFLoader</Filter>
-    </ClInclude>
     <ClInclude Include="GAFPrecompiled.h">
       <Filter>Sources</Filter>
     </ClInclude>
@@ -185,41 +182,44 @@
     <ClInclude Include="Sources\GAFJSONData.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="GAFFile.h">
+    <ClInclude Include="Sources\DefinitionTagBase.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineAnimationFrames.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineAnimationMasks.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineAnimationObjects.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineAtlas.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineNamedParts.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefines.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\TagDefineSequences.h">
+      <Filter>Sources\GAFLoader\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GAFFile.h">
       <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
-    <ClInclude Include="GAFStream.h">
+    <ClInclude Include="Sources\GAFHeader.h">
       <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
-    <ClInclude Include="TagDefines.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="GAFLoader.h">
+    <ClInclude Include="Sources\GAFLoader.h">
       <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
-    <ClInclude Include="DefinitionTagBase.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimitiveDeserializer.h">
+    <ClInclude Include="Sources\GAFStream.h">
       <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
-    <ClInclude Include="TagDefineAtlas.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="TagDefineAnimationMasks.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="TagDefineAnimationObjects.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="TagDefineAnimationFrames.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="TagDefineNamedParts.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="TagDefineSequences.h">
-      <Filter>Sources\GAFLoader\Tags</Filter>
+    <ClInclude Include="Sources\PrimitiveDeserializer.h">
+      <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -34,11 +34,11 @@ public:
 
     float                readFloat();
 
-    uint8_t              readUByte();
-    int8_t               readSByte();
+    unsigned char        readUByte();
+    char                 readSByte();
 
-    uint8_t              readU8() { return readUByte(); }
-    int8_t               readS8() { return readSByte(); }
+    unsigned char        readU8() { return readUByte(); }
+    char                 readS8() { return readSByte(); }
     unsigned short       readU16();
     unsigned int         readU32();
     int                  readS32();

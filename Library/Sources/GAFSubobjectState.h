@@ -21,6 +21,10 @@ enum GAFColorTransformIndex
 class GAFSubobjectState : public CCObject
 {
 public:
+
+    unsigned int objectIdRef;
+    unsigned int maskObjectIdRef;
+
     std::string objectId;
     int zIndex;
     std::string maskObjectId;
@@ -29,8 +33,17 @@ public:
     static GAFSubobjectState * createWithStateDictionary(CCDictionary * dict, const char * objectId);
     static GAFSubobjectState * createEmptyWithObjectId(const char * objectId);
 
+    static GAFSubobjectState* createEmpty(unsigned int objectIdRef);
+
+    static GAFSubobjectState* create();
+    bool init();
+
+
     bool initWithStateDictionary(CCDictionary * dict, const char * objectId);
     bool initEmptyWinthObjectId(const char * objectId);
+
+    bool initEmpty(unsigned int objectIdRef);
+
     ~GAFSubobjectState();
     inline CCDictionary * filters()
     {
@@ -48,6 +61,9 @@ public:
     {
         return _colorMults[GAFCTI_A] != 0;
     }
+
+    void ctxMakeIdentity();
+
 protected:
     GAFSubobjectState();
 private:

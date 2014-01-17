@@ -99,13 +99,13 @@ float GAFStream::readFixed8()
     return static_cast<float>(retval / 255.0f);
 }
 
-uint8_t GAFStream::readUByte()
+unsigned char GAFStream::readUByte()
 {
     align();
     return m_input->read1Byte();
 }
 
-int8_t GAFStream::readSByte()
+char GAFStream::readSByte()
 {
     align();
     return m_input->read1Byte();

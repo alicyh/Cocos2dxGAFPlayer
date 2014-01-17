@@ -29,3 +29,8 @@ void GAFAnimationFrame::setObjectStates(CCArray * states)
     CC_SAFE_RETAIN(_objectsStates);
 }
 
+void GAFAnimationFrame::pushObjectState(GAFSubobjectState* state)
+{
+    m_subObjectStates.push_back(state);
+}
+

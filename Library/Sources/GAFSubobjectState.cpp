@@ -109,6 +109,46 @@ GAFSubobjectState * GAFSubobjectState::createEmptyWithObjectId(const char * obje
     return NULL;
 }
 
+GAFSubobjectState* GAFSubobjectState::create()
+{
+    GAFSubobjectState * ret = new GAFSubobjectState();
+    if (ret && ret->init())
+    {
+        ret->autorelease();
+        return ret;
+    }
+    CC_SAFE_DELETE(ret);
+    return NULL;
+}
+
+bool GAFSubobjectState::init()
+{
+    return true;
+}
+
+GAFSubobjectState * GAFSubobjectState::createEmpty(unsigned int objectIdRef)
+{
+    GAFSubobjectState * ret = new GAFSubobjectState();
+
+    if (ret && ret->initEmpty(objectIdRef))
+    {
+        ret->autorelease();
+        return ret;
+    }
+    CC_SAFE_DELETE(ret);
+    return NULL;
+}
+
+bool GAFSubobjectState::initEmpty(unsigned int ref)
+{
+    objectIdRef = ref;
+    zIndex = 0;
+    affineTransform = CCAffineTransformMake(1, 0, 0, 1, 0, 0);
+    _colorOffsets[0] = _colorOffsets[1] = _colorOffsets[2] = _colorOffsets[3] = _colorMults[GAFCTI_A] = 0;
+    _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
+    return true;
+}
+
 bool GAFSubobjectState::initEmptyWinthObjectId(const char * objId)
 {
     objectId = objId;
@@ -243,4 +283,11 @@ bool GAFSubobjectState::initWithStateDictionary(CCDictionary * dict, const char 
     }
     return true;
 }
+
+void GAFSubobjectState::ctxMakeIdentity()
+{
+    _colorOffsets[0] = _colorOffsets[1] = _colorOffsets[2] = _colorOffsets[3] = 0;
+    _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
+}
+
 

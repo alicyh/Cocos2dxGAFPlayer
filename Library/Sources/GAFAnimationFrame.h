@@ -26,10 +26,10 @@ private:
 public:
     GAFAnimationFrame();
     ~GAFAnimationFrame();
-    //static GAFAnimationFrame * create(CCDictionary * aDictionary, GAFTextureAtlas * aTextureAtlas);
-    //bool init(CCDictionary * aDictionary, GAFTextureAtlas * aTextureAtlas);
     CCArray * objectStates();
     void setObjectStates(CCArray * states);
+
+    void    pushObjectState(GAFSubobjectState*);
 };
 
 #endif // __GAF_ANIMATION_FRAME__

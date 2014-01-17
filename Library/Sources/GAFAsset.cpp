@@ -489,3 +489,13 @@ void GAFAsset::pushAnimationObjects(unsigned int objectId, unsigned int elementA
 {
     m_animationObjects[objectId] = elementAtlasIdRef;
 }
+
+void GAFAsset::pushAnimationFrame(GAFAnimationFrame* frame)
+{
+    m_animationFrames.push_back(frame);
+}
+
+const GAFAsset::AnimationObjects_t& GAFAsset::getAnimationObjects() const
+{
+    return m_animationObjects;
+}

@@ -13,6 +13,7 @@ using namespace cocos2d;
 class GAFTextureAtlas;
 class GAFAnimatedObject;
 class GAFAnimationSequence;
+class GAFAnimationFrame;
 
 class GAFLoader;
 
@@ -23,11 +24,13 @@ public:
     typedef std::list<GAFTextureAtlas*> TextureAtlases_t;
     typedef std::map<unsigned int, unsigned int> AnimationMasks_t;
     typedef std::map<unsigned int, unsigned int> AnimationObjects_t;
+    typedef std::vector<GAFAnimationFrame*> AnimationFrames_t;
 
 private:
     TextureAtlases_t        m_textureAtlases;
     AnimationMasks_t        m_animationMasks;
     AnimationObjects_t      m_animationObjects;
+    AnimationFrames_t       m_animationFrames;
 
 private:
     void loadAnimationSequences(CCArray * aSequencesNodes);
@@ -64,6 +67,8 @@ public:
     void                    pushTextureAtlas(GAFTextureAtlas* atlas);
     void                    pushAnimationMask(unsigned int objectId, unsigned int elementAtlasIdRef);
     void                    pushAnimationObjects(unsigned int objectId, unsigned int elementAtlasIdRef);
+    void                    pushAnimationFrame(GAFAnimationFrame* frame);
+    const AnimationObjects_t& getAnimationObjects() const;
 
     GAFAsset();
     ~GAFAsset();

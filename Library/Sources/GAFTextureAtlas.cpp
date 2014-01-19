@@ -31,6 +31,8 @@ GAFTextureAtlas::~GAFTextureAtlas()
     CC_SAFE_RELEASE(_images);
     CC_SAFE_RELEASE(_textures);
     CC_SAFE_RELEASE(_elements);
+
+    GAF_RELEASE_MAP(GAFTextureAtlas::Elements_t, m_elements);
 }
 
 GAFTextureAtlas * GAFTextureAtlas::create(const char * aTexturesDirectory, CCDictionary * aTextureAtlasConfigDictionary)
@@ -189,11 +191,11 @@ bool GAFTextureAtlas::loadElementsFromAnimationConfigDictionary(CCDictionary * a
             CCDictionary * dict = dynamic_cast<CCDictionary*>(nElement);
             if (dict)
             {
-                GAFTextureAtlasElement * element = GAFTextureAtlasElement::create(dict);
+                /*GAFTextureAtlasElement * element = GAFTextureAtlasElement::create(dict);
                 if (element)
                 {
                     _elements->setObject(element, element->name);
-                }
+                }*/
             }
             else
             {
@@ -278,7 +280,6 @@ void GAFTextureAtlas::pushAtlasInfo(const AtlasInfo& ai)
 void GAFTextureAtlas::pushElement(unsigned int idx, GAFTextureAtlasElement* el)
 {
     m_elements[idx] = el;
-    el->retain();
 }
 
 const GAFTextureAtlas::Elements_t& GAFTextureAtlas::getElements() const

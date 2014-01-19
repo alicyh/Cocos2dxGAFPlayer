@@ -32,6 +32,12 @@ for (__type::iterator i = __instance.begin(), e = __instance.end(); i != e; ++i)
 delete *i; \
 } __instance.clear();
 
+#define GAF_RELEASE_MAP(__type, __instance)\
+for (__type::iterator i = __instance.begin(), e = __instance.end(); i != e; ++i) {\
+delete i->second; \
+} __instance.clear();
+
+
 enum 
 {
     IDNONE = UINT_MAX

@@ -188,7 +188,7 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
 
         unsigned int atlasElementIdRef = i->second;
 
-        GAFTextureAtlas::Elements_t::const_iterator elIt = elementsMap.find(atlasElementIdRef); //! Search for atlas element by it's xref
+        GAFTextureAtlas::Elements_t::const_iterator elIt = elementsMap.find(atlasElementIdRef); //! Search for atlas element by its xref
 
         assert(elIt != elementsMap.end());
 
@@ -232,7 +232,8 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
         }
         else
         {
-            CCLOGERROR("Cannot add subnode with AtlasElementRef: %d, not found in atlas(es). Ignoring.", atlasElementId);
+            assert(false);
+            CCLOGERROR("Cannot add subnode with AtlasElementRef: %d, not found in atlas(es). Ignoring.", atlasElementIdRef);
         }
 
     }
@@ -261,7 +262,7 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
             {
                 GAFStencilMaskSprite *mask = new GAFStencilMaskSprite();
                 mask->initWithSpriteFrame(spriteFrame);
-                mask->objectIdRef = atlasElementIdRef;
+                mask->objectIdRef = i->first;
                 CCPoint pt = CCPointMake(0 - (0 - (txElemet->pivotPoint.x / mask->getContentSize().width)),
                     0 + (1 - (txElemet->pivotPoint.y / mask->getContentSize().height)));
 

@@ -149,7 +149,7 @@ Tags::Enum GAFStream::openTag()
     unsigned int tagLenght = tagHeader & 0x3F;*/
 
     unsigned short tagType = readU16();
-    unsigned short tagLenght = readU32();
+    unsigned int tagLenght = readU32();
 
     assert(m_unusedBits == 0);
 

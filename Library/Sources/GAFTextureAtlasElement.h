@@ -10,7 +10,7 @@ namespace cocos2d
 
 using namespace cocos2d;
 
-class GAFTextureAtlasElement : public CCObject
+class GAFTextureAtlasElement
 {
 public:
     std::string name;
@@ -21,12 +21,8 @@ public:
 
     unsigned int elementAtlasIdx;
 
-    static GAFTextureAtlasElement*   create();
     bool                             init();
 
-    static GAFTextureAtlasElement * create(CCDictionary * aDictionary);
-    bool initWithDictionary(CCDictionary * aDictionary);
-private:
     GAFTextureAtlasElement();
 }; // GAFTextureAtlasElement
 

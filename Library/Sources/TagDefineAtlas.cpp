@@ -41,7 +41,7 @@ void TagDefineAtlas::read(GAFStream* in, GAFAsset* ctx)
 
     for (unsigned int i = 0; i < elementsCount; ++i)
     {
-        GAFTextureAtlasElement* element = GAFTextureAtlasElement::create();
+        GAFTextureAtlasElement* element = new GAFTextureAtlasElement();
 
         PrimiriveDeserializer::deserialize(in, &element->pivotPoint);
         CCPoint origin;

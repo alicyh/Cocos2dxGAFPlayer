@@ -38,7 +38,7 @@ static float _currentDeviceScale = 1.0f;
 static bool  _makeExactScaleForObject = false;
 static int   _desiredCsf = 2;
 
-int GAFAsset::desiredCsf()
+float GAFAsset::desiredCsf()
 {
     return CC_CONTENT_SCALE_FACTOR();
 }
@@ -50,10 +50,10 @@ void GAFAsset::setDesiredCsf(int csf)
 
 GAFAnimatedObject * GAFAsset::createObject()
 {
-    if (!_textureAtlas)
+    /*if (!_textureAtlas)
     {
         return 0;
-    }
+    }*/
     return GAFAnimatedObject::create(this);
 }
 
@@ -91,7 +91,8 @@ _interactionObjects(NULL),
 _standObjects(NULL),
 _animationFrames(NULL),
 _animationSequences(NULL),
-_namedParts(NULL)
+_namedParts(NULL),
+m_currentTextureAtlas(NULL)
 {
 }
 
@@ -126,12 +127,42 @@ bool GAFAsset::initWithGAFFile(const std::string& filePath)
 {
     GAFLoader* loader = new GAFLoader();
 
-    bool isLoaded = loader->loadFile(filePath, this);
+    std::string fullfilePath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filePath.c_str());
+
+    bool isLoaded = loader->loadFile(fullfilePath, this);
+
+    if (m_textureAtlases.empty())
+    {
+        return false;
+    }
 
     if (isLoaded)
     {
+        float atlasScale = m_textureAtlases[0]->getScale();
 
+        m_currentTextureAtlas = m_textureAtlases[0];
+
+        const unsigned int count = m_textureAtlases.size();
+
+        for (unsigned int i = 1; i < count; ++i)
+        {
+            float as = m_textureAtlases[i]->getScale();
+            if (fabs(atlasScale - _currentDeviceScale) > fabs(as - _currentDeviceScale))
+            {
+                m_currentTextureAtlas = m_textureAtlases[i];
+                atlasScale = as;
+            }
+        }
+
+        _usedAtlasContentScaleFactor = atlasScale;
+
+        if (m_currentTextureAtlas)
+        {
+            m_currentTextureAtlas->loadImages(fullfilePath);
+        }
     }
+
+    delete loader;
 
     return isLoaded;
 }
@@ -306,7 +337,7 @@ CCArray * GAFAsset::objectStatesFromConfigFrame(CCDictionary * configFrame)
         GAFSubobjectState * state = GAFSubobjectState::createWithStateDictionary(stateDictionary, pElement->getStrKey());
         if (state)
         {
-            states->addObject(state);
+            //states->addObject(state);
         }
         else
         {
@@ -359,7 +390,7 @@ void GAFAsset::loadFramesFromConfigDictionary(CCDictionary * aConfigDictionary)
     {
         const char * key = pElement->getStrKey();
         GAFSubobjectState *state = GAFSubobjectState::createEmptyWithObjectId(key);
-        currentStates->setObject(state, key);
+        //currentStates->setObject(state, key);
     }
     CCInteger * configFrameCountInt = (CCInteger *)aConfigDictionary->objectForKey(kAnimationFrameCountKey);
     unsigned int configFrameCount = configFrameCountInt ? configFrameCountInt->getValue() : 0;
@@ -381,7 +412,7 @@ void GAFAsset::loadFramesFromConfigDictionary(CCDictionary * aConfigDictionary)
                 for (unsigned int j = 0; j < newStatesCount; ++j)
                 {
                     GAFSubobjectState * state = (GAFSubobjectState *)newStates->objectAtIndex(j);
-                    currentStates->setObject(state, state->objectId.c_str());
+                    //currentStates->setObject(state, state->objectId.c_str());
                 }
                 ++configFrameNo;
                 ++configFrameIndex;
@@ -394,7 +425,7 @@ void GAFAsset::loadFramesFromConfigDictionary(CCDictionary * aConfigDictionary)
         {
             allValues->addObject(s->getObject());
         }
-        frame->setObjectStates(allValues);
+        /*frame->setObjectStates(allValues);*/
         _animationFrames->addObject(frame);
         frame->release();
     }
@@ -421,9 +452,9 @@ CCArray        * GAFAsset::animationFrames()
 }
 
 
-GAFTextureAtlas * GAFAsset::textureAtlas()
+GAFTextureAtlas* GAFAsset::textureAtlas()
 {
-    return _textureAtlas;
+    return m_currentTextureAtlas;
 }
 
 CCDictionary * GAFAsset::animationSequences()
@@ -433,6 +464,8 @@ CCDictionary * GAFAsset::animationSequences()
 
 int GAFAsset::animationFramesCount() const
 {
+    return m_animationFrames.size();
+
     if (_animationFrames)
     {
         return _animationFrames->count();
@@ -495,7 +528,17 @@ void GAFAsset::pushAnimationFrame(GAFAnimationFrame* frame)
     m_animationFrames.push_back(frame);
 }
 
-const GAFAsset::AnimationObjects_t& GAFAsset::getAnimationObjects() const
+const AnimationObjects_t& GAFAsset::getAnimationObjects() const
 {
     return m_animationObjects;
+}
+
+const AnimationMasks_t& GAFAsset::getAnimationMasks() const
+{
+    return m_animationMasks;
+}
+
+const AnimationFrames_t& GAFAsset::getAnimationFrames() const
+{
+    return m_animationFrames;
 }

@@ -75,7 +75,9 @@ static void split(const string& s, const string& delim, std::vector<std::string>
 
 GAFSubobjectState::GAFSubobjectState()
 :
-_filters(NULL)
+_filters(NULL),
+objectIdRef(IDNONE),
+maskObjectIdRef(IDNONE)
 {
 
 }
@@ -87,37 +89,37 @@ GAFSubobjectState::~GAFSubobjectState()
 
 GAFSubobjectState * GAFSubobjectState::createWithStateDictionary(CCDictionary * dict, const char * objectId)
 {
-    GAFSubobjectState * ret = new GAFSubobjectState();
-    if (ret && ret->initWithStateDictionary(dict, objectId))
-    {
-        ret->autorelease();
-        return ret;
-    }
-    CC_SAFE_DELETE(ret);
+//     GAFSubobjectState * ret = new GAFSubobjectState();
+//     if (ret && ret->initWithStateDictionary(dict, objectId))
+//     {
+//         ret->autorelease();
+//         return ret;
+//     }
+//     CC_SAFE_DELETE(ret);
     return NULL;
 }
 
 GAFSubobjectState * GAFSubobjectState::createEmptyWithObjectId(const char * objectId)
 {
-    GAFSubobjectState * ret = new GAFSubobjectState();
-    if (ret && ret->initEmptyWinthObjectId(objectId))
-    {
-        ret->autorelease();
-        return ret;
-    }
-    CC_SAFE_DELETE(ret);
+//     GAFSubobjectState * ret = new GAFSubobjectState();
+//     if (ret && ret->initEmptyWinthObjectId(objectId))
+//     {
+//         ret->autorelease();
+//         return ret;
+//     }
+//     CC_SAFE_DELETE(ret);
     return NULL;
 }
 
 GAFSubobjectState* GAFSubobjectState::create()
 {
-    GAFSubobjectState * ret = new GAFSubobjectState();
-    if (ret && ret->init())
-    {
-        ret->autorelease();
-        return ret;
-    }
-    CC_SAFE_DELETE(ret);
+//     GAFSubobjectState * ret = new GAFSubobjectState();
+//     if (ret && ret->init())
+//     {
+//         ret->autorelease();
+//         return ret;
+//     }
+//     CC_SAFE_DELETE(ret);
     return NULL;
 }
 
@@ -128,14 +130,14 @@ bool GAFSubobjectState::init()
 
 GAFSubobjectState * GAFSubobjectState::createEmpty(unsigned int objectIdRef)
 {
-    GAFSubobjectState * ret = new GAFSubobjectState();
-
-    if (ret && ret->initEmpty(objectIdRef))
-    {
-        ret->autorelease();
-        return ret;
-    }
-    CC_SAFE_DELETE(ret);
+//     GAFSubobjectState * ret = new GAFSubobjectState();
+// 
+//     if (ret && ret->initEmpty(objectIdRef))
+//     {
+//         ret->autorelease();
+//         return ret;
+//     }
+//     CC_SAFE_DELETE(ret);
     return NULL;
 }
 
@@ -270,8 +272,7 @@ bool GAFSubobjectState::initWithStateDictionary(CCDictionary * dict, const char 
                     {
                         float bx = static_cast<float>(atof(x->getCString()));
                         float by = static_cast<float>(atof(y->getCString()));
-                        GAFBlurFilterData * blurFilter = GAFBlurFilterData::create(bx, by);
-                        _filters->setObject(blurFilter, kGAFBlurFilterName);
+                        
                     }
                 }
             }
@@ -287,7 +288,15 @@ bool GAFSubobjectState::initWithStateDictionary(CCDictionary * dict, const char 
 void GAFSubobjectState::ctxMakeIdentity()
 {
     _colorOffsets[0] = _colorOffsets[1] = _colorOffsets[2] = _colorOffsets[3] = 0;
-    _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
+    _colorMults[GAFCTI_A] = _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
 }
 
+void GAFSubobjectState::pushFilter(GAFFilterType type, GAFFilterData* filter)
+{
+    m_filters[type] = filter;
+}
 
+const Filters_t& GAFSubobjectState::getFilters() const
+{
+    return m_filters;
+}

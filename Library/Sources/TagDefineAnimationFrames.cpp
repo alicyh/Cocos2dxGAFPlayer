@@ -8,6 +8,7 @@
 
 #include "GAFSubobjectState.h"
 #include "GAFAnimationFrame.h"
+#include "GAFFilterData.h"
 
 void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
 {
@@ -18,14 +19,14 @@ void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
 
     assert(!ctx->getAnimationObjects().empty());
 
-    for (GAFAsset::AnimationObjects_t::const_iterator i = ctx->getAnimationObjects().begin(), e = ctx->getAnimationObjects().end(); i != e; ++i)
+    for (AnimationObjects_t::const_iterator i = ctx->getAnimationObjects().begin(), e = ctx->getAnimationObjects().end(); i != e; ++i)
     {
         unsigned int objectId = i->first;
-        GAFSubobjectState *state = GAFSubobjectState::createEmpty(objectId);
+        GAFSubobjectState *state = new GAFSubobjectState();
+        state->initEmpty(objectId);
+
         currentStates[objectId] = state;
     }
-
-    unsigned int configFramesIndex = 0;
 
     for (unsigned int i = 0; i < count; ++i)
     {
@@ -33,8 +34,6 @@ void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
 
         if ((frameNumber - 1) == i)
         {
-            configFramesIndex++;
-
             unsigned int numObjects = in->readU32();
 
             typedef std::list<GAFSubobjectState*> StatesList_t;
@@ -42,60 +41,7 @@ void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
 
             for (unsigned int j = 0; j < numObjects; ++j)
             {
-                GAFSubobjectState* state = GAFSubobjectState::create();
-
-                float ctx[7];
-
-                char hasColorTransform = in->readUByte();
-                char hasMasks = in->readUByte();
-                char hasEffect = in->readUByte();
-
-                state->objectIdRef = in->readU32();
-                state->zIndex = in->readS32();
-                float alpha = in->readFloat();
-
-                PrimiriveDeserializer::deserialize(in, &state->affineTransform);
-
-                if (hasColorTransform)
-                {
-                    in->readNBytesOfT(ctx, sizeof(float)* 7);
-
-                    float* ctxOff = state->colorOffsets();
-                    float* ctxMul = state->colorMults();
-
-                    ctxOff[GAFCTI_A] = ctx[0];
-                                       
-                    ctxMul[GAFCTI_R] = ctx[1];
-                    ctxOff[GAFCTI_R] = ctx[2];
-
-                    ctxMul[GAFCTI_G] = ctx[3];
-                    ctxOff[GAFCTI_G] = ctx[4];
-
-                    ctxMul[GAFCTI_B] = ctx[5];
-                    ctxOff[GAFCTI_B] = ctx[6];
-                }
-                else
-                {
-                    state->ctxMakeIdentity();
-                }
-
-                if (hasEffect)
-                {
-                    assert(false);
-                    unsigned char effects = in->readUByte();
-
-                    for (unsigned int e = 0; e < effects; ++e)
-                    {
-                        unsigned int type = in->readU32();
-                        CCPoint p;
-                        PrimiriveDeserializer::deserialize(in, &p);
-                    }
-                }
-
-                if (hasMasks)
-                {
-                    state->maskObjectIdRef = in->readU32();
-                }
+                GAFSubobjectState* state = extractState(in);
 
                 statesList.push_back(state);
             }
@@ -116,4 +62,70 @@ void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
 
         ctx->pushAnimationFrame(frame);
     }
+}
+
+GAFSubobjectState* TagDefineAnimationFrames::extractState(GAFStream* in)
+{
+    GAFSubobjectState* state = new GAFSubobjectState();
+
+    float ctx[7];
+
+    char hasColorTransform = in->readUByte();
+    char hasMasks = in->readUByte();
+    char hasEffect = in->readUByte();
+
+    state->objectIdRef = in->readU32();
+    state->zIndex = in->readS32();
+    float alpha = in->readFloat();
+
+    PrimiriveDeserializer::deserialize(in, &state->affineTransform);
+
+    if (hasColorTransform)
+    {
+        in->readNBytesOfT(ctx, sizeof(float)* 7);
+
+        float* ctxOff = state->colorOffsets();
+        float* ctxMul = state->colorMults();
+
+        ctxOff[GAFCTI_A] = ctx[0];
+
+        ctxMul[GAFCTI_R] = ctx[1];
+        ctxOff[GAFCTI_R] = ctx[2];
+
+        ctxMul[GAFCTI_G] = ctx[3];
+        ctxOff[GAFCTI_G] = ctx[4];
+
+        ctxMul[GAFCTI_B] = ctx[5];
+        ctxOff[GAFCTI_B] = ctx[6];
+    }
+    else
+    {
+        state->ctxMakeIdentity();
+    }
+
+    if (hasEffect)
+    {
+        unsigned char effects = in->readUByte();
+
+        for (unsigned int e = 0; e < effects; ++e)
+        {
+            GAFFilterType type = (GAFFilterType)in->readU32();
+
+            if (type == GFT_Blur)
+            {
+                CCSize p;
+                PrimiriveDeserializer::deserialize(in, &p);
+                GAFBlurFilterData* blurFilter = new GAFBlurFilterData();
+                blurFilter->blurSize = p;
+                state->pushFilter(type, blurFilter);
+            }
+        }
+    }
+
+    if (hasMasks)
+    {
+        state->maskObjectIdRef = in->readU32();
+    }
+
+    return state;
 }

@@ -40,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
 
-    pEGLView->setDesignResolutionSize(2048, 1536, kResolutionNoBorder);
+    //pEGLView->setDesignResolutionSize(2048, 1536, kResolutionNoBorder);
 
     CCSize frameSize = pEGLView->getFrameSize();
 

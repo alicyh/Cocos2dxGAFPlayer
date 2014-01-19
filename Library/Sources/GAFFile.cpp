@@ -122,11 +122,9 @@ void GAFFile::close()
     m_dataPosition = 0;
 }
 
-bool GAFFile::open(const std::string& filename, const char* openMode)
+bool GAFFile::open(const std::string& filePath, const char* openMode)
 {
     close();
-
-    std::string filePath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str());
 
     m_data = CCFileUtils::sharedFileUtils()->getFileData(filePath.c_str(), openMode, &m_dataLen);
 

@@ -4,29 +4,18 @@
 #include "GAFTextureAtlas.h"
 
 GAFAnimationFrame::GAFAnimationFrame()
-:
-_initialInstructions(NULL),
-_objectsStates(NULL)
 {
 
 }
 
 GAFAnimationFrame::~GAFAnimationFrame()
 {
-    CC_SAFE_RELEASE(_initialInstructions);
-    CC_SAFE_RELEASE(_objectsStates);
+    GAF_RELEASE_ARRAY(GAFAnimationFrame::SubobjectStates_t, m_subObjectStates);
 }
 
-CCArray * GAFAnimationFrame::objectStates()
+const GAFAnimationFrame::SubobjectStates_t& GAFAnimationFrame::getObjectStates() const
 {
-    return _objectsStates;
-}
-
-void GAFAnimationFrame::setObjectStates(CCArray * states)
-{
-    CC_SAFE_RELEASE(_objectsStates);
-    _objectsStates = states;
-    CC_SAFE_RETAIN(_objectsStates);
+    return m_subObjectStates;
 }
 
 void GAFAnimationFrame::pushObjectState(GAFSubobjectState* state)

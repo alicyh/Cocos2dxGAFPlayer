@@ -3,6 +3,8 @@
 #ifndef __GAF_ASSET_H__
 #define __GAF_ASSET_H__
 
+#include "GAFCollections.h"
+
 namespace cocos2d
 {
     class CCDictionary;
@@ -19,18 +21,13 @@ class GAFLoader;
 
 class GAFAsset : public CCObject
 {
-public:
-
-    typedef std::list<GAFTextureAtlas*> TextureAtlases_t;
-    typedef std::map<unsigned int, unsigned int> AnimationMasks_t;
-    typedef std::map<unsigned int, unsigned int> AnimationObjects_t;
-    typedef std::vector<GAFAnimationFrame*> AnimationFrames_t;
-
 private:
     TextureAtlases_t        m_textureAtlases;
     AnimationMasks_t        m_animationMasks;
     AnimationObjects_t      m_animationObjects;
     AnimationFrames_t       m_animationFrames;
+
+    GAFTextureAtlas*        m_currentTextureAtlas;
 
 private:
     void loadAnimationSequences(CCArray * aSequencesNodes);
@@ -68,7 +65,9 @@ public:
     void                    pushAnimationMask(unsigned int objectId, unsigned int elementAtlasIdRef);
     void                    pushAnimationObjects(unsigned int objectId, unsigned int elementAtlasIdRef);
     void                    pushAnimationFrame(GAFAnimationFrame* frame);
-    const AnimationObjects_t& getAnimationObjects() const;
+    const AnimationObjects_t&   getAnimationObjects() const;
+    const AnimationMasks_t&     getAnimationMasks() const;
+    const AnimationFrames_t&    getAnimationFrames() const;
 
     GAFAsset();
     ~GAFAsset();
@@ -97,7 +96,7 @@ public:
     GAFAnimatedObject * createObjectAndRun(bool looped = false);
 
     /// desired content scale factor
-    static int desiredCsf();
+    static float desiredCsf();
     /// sets desired content scale factor
     static void setDesiredCsf(int csf);
     /// used content scale factor		

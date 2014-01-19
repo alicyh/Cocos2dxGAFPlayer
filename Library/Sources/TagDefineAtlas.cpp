@@ -19,7 +19,6 @@ void TagDefineAtlas::read(GAFStream* in, GAFAsset* ctx)
     for (unsigned char i = 0; i < atlasesCount; ++i)
     {
         GAFTextureAtlas::AtlasInfo ai;
-        GAFTextureAtlas::AtlasInfo::Source aiSource;
 
         ai.id = in->readU32();
 
@@ -27,8 +26,12 @@ void TagDefineAtlas::read(GAFStream* in, GAFAsset* ctx)
 
         for (unsigned char j = 0; j < sources; ++j)
         {
+            GAFTextureAtlas::AtlasInfo::Source aiSource;
+
             in->readString(&aiSource.source);
             aiSource.csf = in->readFloat();
+
+            ai.m_sources.push_back(aiSource);
         }
 
         txAtlas->pushAtlasInfo(ai);
@@ -50,6 +53,12 @@ void TagDefineAtlas::read(GAFStream* in, GAFAsset* ctx)
         float height = in->readFloat();
 
         element->atlasIdx = in->readU32();
+
+        if (element->atlasIdx > 0)
+        {
+            element->atlasIdx--;
+        }
+
         element->elementAtlasIdx = in->readU32();
 
         element->bounds.origin = origin;

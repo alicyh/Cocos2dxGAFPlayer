@@ -17,17 +17,13 @@ using namespace cocos2d;
 class GAFAnimationFrame : public CCObject
 {
 public:
-    typedef std::list<GAFSubobjectState*> SubobjectStates_t;
+    typedef std::vector<GAFSubobjectState*> SubobjectStates_t;
 private:
     SubobjectStates_t       m_subObjectStates;
-
-    CCArray * _initialInstructions;
-    CCArray * _objectsStates;
 public:
     GAFAnimationFrame();
     ~GAFAnimationFrame();
-    CCArray * objectStates();
-    void setObjectStates(CCArray * states);
+    const SubobjectStates_t& getObjectStates() const;
 
     void    pushObjectState(GAFSubobjectState*);
 };

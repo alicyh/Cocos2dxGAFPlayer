@@ -46,6 +46,7 @@
   <ItemGroup>
     <ClInclude Include="GAFPrecompiled.h" />
     <ClInclude Include="Sources\DefinitionTagBase.h" />
+    <ClInclude Include="Sources\GAFCollections.h" />
     <ClInclude Include="Sources\GAFFile.h" />
     <ClInclude Include="Sources\GAFHeader.h" />
     <ClInclude Include="Sources\GAFJSONConverter.h" />

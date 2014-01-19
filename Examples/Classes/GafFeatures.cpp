@@ -164,14 +164,23 @@ bool GafFeatures::init()
     m_anim_index = 0;
 
     GAFAsset* bAsset = new GAFAsset();
-    bAsset->initWithGAFFile("simpleTest.gaf");
+    bAsset->initWithGAFFile("fireman.gaf");
+
+    m_bObject = bAsset->createObjectAndRun(true);
+
+    m_bObject->setZOrder(100);
+    addChild(m_bObject);
+
+    m_bObject->setPosition(size.width * 0.5f, size.height * 0.5f);
+
+   /* assert(false);
 
     m_jsons.push_back("SampleAnimations/2/2.json");
     m_jsons.push_back("SampleAnimations/1/1.json");
     m_jsons.push_back("SampleAnimations/3/3.json");
     m_jsons.push_back("SampleAnimations/4/4.json");
 
-    addObjectsToScene(1);
+    addObjectsToScene(1);*/
     black(NULL);
 
     setTouchEnabled(true);
@@ -189,12 +198,12 @@ void GafFeatures::enableSequenceControllers( bool value )
 
 void GafFeatures::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 {
-    if (!m_objects || !m_objects->count())
-    {
-        return;
-    }
+//     if (!m_objects || !m_objects->count())
+//     {
+//         return;
+//     }
 
-    GAFAnimatedObject * node = (GAFAnimatedObject*)m_objects->objectAtIndex(0);
+    GAFAnimatedObject * node = m_bObject;//(GAFAnimatedObject*)m_objects->objectAtIndex(0);
     CCTouch * pTouch = (CCTouch*) pTouches->anyObject();
     CCPoint pt = pTouch->getLocation();
     node->setPosition(pt.x, pt.y);

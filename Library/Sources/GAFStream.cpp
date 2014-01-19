@@ -157,6 +157,8 @@ Tags::Enum GAFStream::openTag()
 
     TagRecord record = { m_input->getPosition() + tagLenght, tagLenght, (Tags::Enum)tagType };
 
+    CCLOG("[%d]: Opening tag: [%s] with len: [%d] expected stream position: [%d]", getPosition(), Tags::toString(record.tagType).c_str(), record.tagSize, record.expectedStreamPos);
+
     m_tagStack.push(record);
 
     return (Tags::Enum)tagType;
@@ -174,10 +176,9 @@ void GAFStream::closeTag()
 
     if (record.expectedStreamPos != inputPosition)
     {
-        //TODO CCLOGERROR()
-        //BFORMATTED_GLOG(DLOG(ERROR) << boost::format("Tag [%s] hasn't been correctly read, tag length is not respected. Expected [%d] but actually [%d]") % Tags::toString(tag) % endPos % inputPosition);
+        CCLOGERROR("Tag [%s] hasn't been correctly read, tag length is not respected. Expected [%d] but actually [%d]", Tags::toString(record.tagType), record.expectedStreamPos, inputPosition);
 
-        //assert("Tag has not correctly read, tag length was not respected" && false);
+        //assert("Tag hasn't been correctly read, tag length was not respected" && false);
     }
 
     m_input->rewind(record.expectedStreamPos);

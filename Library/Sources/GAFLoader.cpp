@@ -45,7 +45,6 @@ GAFLoader::~GAFLoader()
     {
         delete i->second;
     }
-
 }
 
 bool GAFLoader::loadFile(const std::string& fname, GAFAsset* context)

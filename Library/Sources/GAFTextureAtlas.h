@@ -25,8 +25,11 @@ public:
         {
             std::string source;
             float csf;
-        } m_source;
+        };
 
+        typedef std::vector<Source> Sources_t;
+
+        Sources_t m_sources;
         unsigned int id;
     };
 
@@ -54,6 +57,8 @@ public:
     void                    pushAtlasInfo(const AtlasInfo& ai);
     void                    pushElement(unsigned int idx, GAFTextureAtlasElement* el);
 
+    void                    loadImages(const std::string& dir);
+
     virtual bool init();
 
     bool init(const char * aTexturesDirectory, CCDictionary * aTextureAtlasConfigDictionary);
@@ -73,6 +78,8 @@ public:
     CCArray     * textures();
 
     CCDictionary * elements();
+
+    const Elements_t& getElements() const;
 
     bool loadElementsFromAnimationConfigDictionary(CCDictionary * aConfigDictionary);
 

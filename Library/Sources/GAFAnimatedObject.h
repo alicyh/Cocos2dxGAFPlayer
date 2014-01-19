@@ -3,10 +3,8 @@
 #ifndef __GAF_ANIMATED_OBJECT_H__
 #define __GAF_ANIMATED_OBJECT_H__
 
-#include "layers_scenes_transitions_nodes/CCLayer.h"
 #include "GAFAnimation.h"
-#include <vector>
-#include <string>
+#include "GAFCollections.h"
 
 class GAFAnimation;
 class GAFSprite;
@@ -56,7 +54,7 @@ public:
 class GAFAnimatedObjectControlDelegate
 {
 public:
-    virtual void onFrameDisplayed(GAFAnimatedObject * object, GAFSprite * subobject);
+    virtual void onFrameDisplayed(GAFAnimatedObject * object, const GAFSprite * subobject) = 0;
 };
 
 class GAFAnimatedObject : public CCLayer, public GAFAnimation
@@ -70,13 +68,18 @@ public:
     bool init(GAFAsset * anAsset);
     void processAnimations(float dt);
     CCPoint pupilCoordinatesWithXSemiaxis(float anXSemiaxis, float anYSemiaxis, CCPoint aCenter, CCPoint anExternalPoint);
-    GAFSprite * subObjectForInnerObjectId(CCString * anInnerObjectId);
+    GAFSprite * subObjectForInnerObjectId(unsigned int anInnerObjectId);
     void removeAllSubObjects();
-    void addSubObjectsUsingAnimationObjectsDictionary(CCDictionary * anAnimationObjects, CCDictionary * anAnimationMasks, CCArray * anAnimationFrames);
+    
+    void instantiateObject(const AnimationObjects_t& objs, const AnimationMasks_t& masks, const AnimationFrames_t& frames);
+
     void setSubobjectsVisible(bool visible);
-    CCDictionary * subObjects();
-    CCDictionary * masks();
+
+    const SubObjects_t& getSubojects() const;
+    const SubObjects_t& getMasks() const;
+
     void animatorDidPlayedFrame(GAFAnimator * anAnimator, int aFrameNo);
+
     /// Returns subobject which has specified name assigned to it ("namedParts" section in config)
     GAFSprite * subobjectByName(const char * name);
     // call this function only if you really know what you do
@@ -104,8 +107,10 @@ protected:
 
 private:
     GAFAsset * _asset;
-    CCDictionary   * _subObjects;
-    CCDictionary   * _masks;
+
+    SubObjects_t m_subObjects;
+    SubObjects_t m_masks;
+
     CCDictionary   * _capturedObjects;
     bool _animationsSelectorScheduled;
     GAFFramePlayedDelegate * _framePlayedDelegate;

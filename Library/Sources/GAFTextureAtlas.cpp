@@ -69,9 +69,54 @@ static bool compare_atlases(const void* p1, const void* p2)
     return id1->getValue() < id2->getValue();
 }
 
+static bool compareAtlasesById(const GAFTextureAtlas::AtlasInfo& ai1, const GAFTextureAtlas::AtlasInfo& ai2)
+{
+    return ai1.id < ai2.id;
+}
+
 bool GAFTextureAtlas::init()
 {
     return true;
+}
+
+
+void GAFTextureAtlas::loadImages(const std::string& dir)
+{
+    std::stable_sort(m_atlasInfos.begin(), m_atlasInfos.end(), compareAtlasesById);
+
+    CC_SAFE_RELEASE(_images);
+    _images = new CCArray();
+
+    if (!m_atlasInfos.empty())
+    {
+        for (unsigned int i = 0; i < m_atlasInfos.size(); ++i)
+        {
+            AtlasInfo& info = m_atlasInfos[i];
+
+            std::string source;
+
+            for (unsigned int j = 0; j < info.m_sources.size(); ++j)
+            {
+                AtlasInfo::Source& aiSource = info.m_sources[j];
+                if (1.f == aiSource.csf)
+                {
+                    source = aiSource.source;
+                }
+
+                if (aiSource.csf == GAFAsset::desiredCsf())
+                {
+                    source = aiSource.source;
+                    break;
+                }
+            }
+
+            CCImage* image = new CCImage();
+            const char * path = CCFileUtils::sharedFileUtils()->fullPathFromRelativeFile(source.c_str(), dir.c_str());
+            image->initWithImageFile(path);
+            _images->addObject(image);
+            image->release();
+        }
+    }
 }
 
 bool GAFTextureAtlas::init(const char * aTexturesDirectory, CCDictionary * aTextureAtlasConfigDictionary)
@@ -234,4 +279,9 @@ void GAFTextureAtlas::pushElement(unsigned int idx, GAFTextureAtlasElement* el)
 {
     m_elements[idx] = el;
     el->retain();
+}
+
+const GAFTextureAtlas::Elements_t& GAFTextureAtlas::getElements() const
+{
+    return m_elements;
 }

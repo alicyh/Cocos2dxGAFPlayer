@@ -221,5 +221,8 @@
     <ClInclude Include="Sources\PrimitiveDeserializer.h">
       <Filter>Sources\GAFLoader</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\GAFCollections.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

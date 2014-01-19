@@ -30,6 +30,9 @@ public:
     void setChildTransform(const CCAffineTransform& transform);
     //virtual CCAffineTransform nodeToParentTransform(void);
     std::string objectId;
+
+    unsigned int objectIdRef;
+
     virtual void draw();
     virtual void setUniformsForFragmentShader();
 

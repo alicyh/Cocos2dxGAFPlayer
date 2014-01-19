@@ -9,6 +9,7 @@
 #include "GAFAnimation.h"
 
 using namespace cocos2d;
+class GAFAnimatedObject;
 
 class GafFeatures : public cocos2d::CCLayer, public GAFSequenceDelegate
 {
@@ -29,6 +30,7 @@ private:
     typedef std::vector<std::string> ObjectSequencesNames_t;
     ObjectSequencesNames_t  m_objectSequencesNames;
     unsigned int m_currentSequence;
+    GAFAnimatedObject*  m_bObject;
 public:
     GafFeatures();
     ~GafFeatures();

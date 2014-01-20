@@ -1,7 +1,6 @@
 #include "GAFPrecompiled.h"
 #include "GAFAsset.h"
 #include "GAFData.h"
-#include "GAFJSONConverter.h"
 #include "GAFTextureAtlas.h"
 #include "GAFTextureAtlasElement.h"
 #include "GAFAnimationFrame.h"
@@ -50,8 +49,6 @@ GAFAnimatedObject * GAFAsset::createObjectAndRun(bool looped)
 
 GAFAsset::GAFAsset()
 :
-_interactionObjects(NULL),
-_standObjects(NULL),
 m_currentTextureAtlas(NULL)
 {
 }
@@ -60,10 +57,6 @@ GAFAsset::~GAFAsset()
 {
     GAF_RELEASE_ARRAY(TextureAtlases_t, m_textureAtlases);
     GAF_RELEASE_ARRAY(AnimationFrames_t, m_animationFrames);
-
-
-    CC_SAFE_RELEASE(_interactionObjects);
-    CC_SAFE_RELEASE(_standObjects);
 }
 
 bool GAFAsset::isAssetVersionPlayable(const char * version)
@@ -219,7 +212,7 @@ const AnimationSequences_t& GAFAsset::getAnimationSequences() const
 
 void GAFAsset::pushNamedPart(unsigned int objectIdRef, const std::string& name)
 {
-    m_namedParts[objectIdRef] = name;
+    m_namedParts[name] = objectIdRef;
 }
 
 const NamedParts_t& GAFAsset::getNamedParts() const

@@ -20,25 +20,22 @@ enum GAFColorTransformIndex
     GAFCTI_A,
 };
 
-class GAFSubobjectState //: public CCObject
+class GAFSubobjectState
 {
 private:
     Filters_t       m_filters;
-    CCDictionary *  _filters;
     float           _colorMults[4];
     float           _colorOffsets[4];
+
+    unsigned long   m_refCount;
+
 public:
 
     unsigned int objectIdRef;
     unsigned int maskObjectIdRef;
 
-    std::string objectId;
     int zIndex;
-    std::string maskObjectId;
     CCAffineTransform affineTransform;
-
-    static GAFSubobjectState * createWithStateDictionary(CCDictionary * dict, const char * objectId);
-    static GAFSubobjectState * createEmptyWithObjectId(const char * objectId);
 
     static GAFSubobjectState* createEmpty(unsigned int objectIdRef);
 
@@ -53,10 +50,6 @@ public:
     ~GAFSubobjectState();
     GAFSubobjectState();
 
-    inline CCDictionary * filters() const
-    {
-        return _filters;
-    }
     inline float * colorMults()
     {
         return &_colorMults[0];
@@ -85,6 +78,10 @@ public:
 
     void                pushFilter(GAFFilterType type, GAFFilterData* filter);
     const Filters_t&    getFilters() const;
+
+
+    void                addRef();
+    void                release();
 
 }; // GAFSubobjectState
 

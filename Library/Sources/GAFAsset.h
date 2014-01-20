@@ -36,11 +36,6 @@ private:
     int _majorVersion;
     int _minorVersion;
 
-    /// List of GAFActionObject-s representing zones to interact with	
-    CCArray        * _interactionObjects;
-    /// List of GAFActionObject-s representing zones on which objects can be put
-    CCArray        * _standObjects;
-
 public:
     /// Initializes asset with bGAF data
 

@@ -61,15 +61,13 @@ class GAFAnimatedObject : public CCLayer, public GAFAnimation
 {
 protected:
     GAFAnimatedObject();
-    unsigned int objectIdByObjectName(const char * aName);
-
 private:
     GAFAsset * _asset;
 
     SubObjects_t m_subObjects;
     SubObjects_t m_masks;
 
-    CCDictionary   * _capturedObjects;
+    CaptureObjects_t m_capturedObjects;
     bool _animationsSelectorScheduled;
     GAFFramePlayedDelegate * _framePlayedDelegate;
     GAFAnimatedObjectControlDelegate * _controlDelegate;
@@ -114,6 +112,8 @@ public:
     void setFramePlayedDelegate(GAFFramePlayedDelegate * delegate);
     void setControlDelegate(GAFAnimatedObjectControlDelegate * delegate);
     CCRect realBoundingBoxForCurrentFrame();
+
+    unsigned int objectIdByObjectName(const std::string& aName);
 
 }; // GAFAnimatedObject
 

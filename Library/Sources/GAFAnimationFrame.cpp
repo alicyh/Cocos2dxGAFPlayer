@@ -21,5 +21,6 @@ const GAFAnimationFrame::SubobjectStates_t& GAFAnimationFrame::getObjectStates()
 void GAFAnimationFrame::pushObjectState(GAFSubobjectState* state)
 {
     m_subObjectStates.push_back(state);
+    state->addRef();
 }
 

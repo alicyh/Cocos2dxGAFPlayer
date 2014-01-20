@@ -49,6 +49,14 @@ void TagDefineAnimationFrames::read(GAFStream* in, GAFAsset* ctx)
             for (StatesList_t::iterator it = statesList.begin(), ie = statesList.end(); it != ie; ++it)
             {
                 GAFSubobjectState* st = *it;
+
+                GAFSubobjectState* ps = currentStates[st->objectIdRef];
+
+                if (ps)
+                {
+                    ps->release();
+                }
+
                 currentStates[st->objectIdRef] = st;
             }
         }

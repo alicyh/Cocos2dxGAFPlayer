@@ -30,7 +30,6 @@ static CCAffineTransform GAF_CGAffineTransformCocosFormatFromFlashFormat(CCAffin
 GAFAnimatedObject::GAFAnimatedObject()
 :
 _asset(NULL),
-_capturedObjects(NULL),
 _extraFramesCounter(0),
 _framePlayedDelegate(NULL),
 _controlDelegate(NULL)
@@ -40,7 +39,6 @@ _controlDelegate(NULL)
 GAFAnimatedObject::~GAFAnimatedObject()
 {
     CC_SAFE_RELEASE(_asset);
-    CC_SAFE_RELEASE(_capturedObjects);
 
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_subObjects);
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_masks);
@@ -86,10 +84,6 @@ bool GAFAnimatedObject::init(GAFAsset * anAsset)
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_subObjects);
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_masks);
 
-    CC_SAFE_RELEASE(_capturedObjects);
-    _capturedObjects = CCDictionary::create();
-    CC_SAFE_RETAIN(_capturedObjects);
-
     _FPSType = kGAFAnimationFPSType_30;
     _extraFramesCounter = 0;
     _animationsSelectorScheduled = false;
@@ -114,27 +108,18 @@ static bool util_ccarray_contains_string(CCArray * array, const std::string& str
     return false;
 }
 
-unsigned int GAFAnimatedObject::objectIdByObjectName(const char * name)
+unsigned int GAFAnimatedObject::objectIdByObjectName(const std::string& aName)
 {
-    if (!name)
+    const NamedParts_t& np = _asset->getNamedParts();
+
+    NamedParts_t::const_iterator it = np.find(aName);
+
+    if (it != np.end())
     {
-        return IDNONE;
+        return it->second;
     }
-    /*CCDictionary * namedParts = _asset->namedParts();
-    if (!namedParts)
-    {
-        return 0;
-    }
-    CCDictElement* pElement = 0;
-    CCDICT_FOREACH(namedParts, pElement)
-    {
-        CCString * str = (CCString*)pElement->getObject();
-        if (0 == strcmp(str->getCString(), name))
-        {
-            return pElement->getStrKey();
-        }
-    }*/
-    return 0;
+
+    return IDNONE;
 }
 
 void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const AnimationMasks_t& masks, const AnimationFrames_t& frames)
@@ -244,11 +229,15 @@ bool GAFAnimatedObject::captureControlOverSubobjectNamed(const char * aName, GAF
     {
         return false;
     }
-    if (_capturedObjects->objectForKey(objectId))
+
+    CaptureObjects_t::const_iterator cpoIt = m_capturedObjects.find(objectId);
+
+    if (cpoIt != m_capturedObjects.end())
     {
         return false;
     }
-    _capturedObjects->setObject(CCInteger::create(aControlFlags), objectId);
+
+    m_capturedObjects[objectId] = aControlFlags;
     return true;
 }
 
@@ -257,7 +246,12 @@ void GAFAnimatedObject::releaseControlOverSubobjectNamed(const char * aName)
     unsigned int objectId = objectIdByObjectName(aName);
     if (objectId != IDNONE)
     {
-        _capturedObjects->removeObjectForKey(objectId);
+        CaptureObjects_t::const_iterator cpoIt = m_capturedObjects.find(objectId);
+
+        if (cpoIt != m_capturedObjects.end())
+        {
+            m_capturedObjects.erase(cpoIt);
+        }
     }
 }
 
@@ -472,11 +466,12 @@ void GAFAnimatedObject::processAnimation()
 
                     bool subobjectCaptured = false;
                     GAFAnimatedObjectControlFlags controlFlags = kGAFAnimatedObjectControl_None;
-                    CCInteger * flagsNum = (CCInteger *)_capturedObjects->objectForKey(state->objectId);
-                    if (flagsNum)
+
+                    CaptureObjects_t::const_iterator cpoIt = m_capturedObjects.find(state->objectIdRef);
+                    if (cpoIt != m_capturedObjects.end())
                     {
                         subobjectCaptured = true;
-                        controlFlags = (GAFAnimatedObjectControlFlags)flagsNum->getValue();
+                        controlFlags = (GAFAnimatedObjectControlFlags)cpoIt->second;
                     }
 
                     if (!subobjectCaptured ||
@@ -533,7 +528,9 @@ void GAFAnimatedObject::processAnimation()
             {
                 const GAFSpriteWithAlpha *subObject = static_cast<const GAFSpriteWithAlpha*>(m_subObjects[state->objectIdRef]);
 
-                bool subobjectCaptured = NULL != _capturedObjects->objectForKey(state->objectId);
+                CaptureObjects_t::const_iterator cpoIt = m_capturedObjects.find(state->objectIdRef);
+
+                bool subobjectCaptured = cpoIt != m_capturedObjects.end();
                 if (subobjectCaptured && _controlDelegate)
                 {
                     _controlDelegate->onFrameDisplayed(this, subObject);

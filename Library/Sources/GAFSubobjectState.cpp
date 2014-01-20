@@ -288,7 +288,7 @@ bool GAFSubobjectState::initWithStateDictionary(CCDictionary * dict, const char 
 void GAFSubobjectState::ctxMakeIdentity()
 {
     _colorOffsets[0] = _colorOffsets[1] = _colorOffsets[2] = _colorOffsets[3] = 0;
-    _colorMults[GAFCTI_A] = _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
+    _colorMults[GAFCTI_R] = _colorMults[GAFCTI_G] = _colorMults[GAFCTI_B] = 1;
 }
 
 void GAFSubobjectState::pushFilter(GAFFilterType type, GAFFilterData* filter)

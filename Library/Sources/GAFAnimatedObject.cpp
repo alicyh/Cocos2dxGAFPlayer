@@ -242,7 +242,6 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
     {
         GAFTextureAtlas* atlas = _asset->textureAtlas();
         const GAFTextureAtlas::Elements_t& elementsMap = atlas->getElements();
-        CCSpriteFrame * spriteFrame = NULL;
 
         unsigned int atlasElementIdRef = i->second;
 
@@ -256,7 +255,7 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
         {
             txElemet = elIt->second;
 
-            spriteFrame = CCSpriteFrame::createWithTexture(atlas->texture(), txElemet->bounds);
+            CCSpriteFrame * spriteFrame = CCSpriteFrame::createWithTexture(atlas->texture(), txElemet->bounds);
 
             if (spriteFrame)
             {
@@ -340,7 +339,6 @@ void GAFAnimatedObject::processAnimations(float dt)
     }
 }
 
-
 CCPoint GAFAnimatedObject::pupilCoordinatesWithXSemiaxis(float anXSemiaxis, float anYSemiaxis, CCPoint aCenter, CCPoint anExternalPoint)
 {
     CCPoint rePoint = CCPointZero;
@@ -405,7 +403,6 @@ const SubObjects_t& GAFAnimatedObject::getMasks() const
 
 void GAFAnimatedObject::start()
 {
-
     GAFAnimation::start();
     removeAllSubObjects();
     instantiateObject(_asset->getAnimationObjects(), _asset->getAnimationMasks(), _asset->getAnimationFrames());
@@ -442,7 +439,6 @@ void GAFAnimatedObject::processAnimation()
     setSubobjectsVisible(false);
 
     const GAFAnimationFrame::SubobjectStates_t& states = currentFrame->getObjectStates();
-
     {
         size_t statesCount = states.size();
         for (size_t i = 0; i < statesCount; ++i)

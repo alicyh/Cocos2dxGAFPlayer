@@ -24,7 +24,6 @@ bool GAFSpriteWithAlpha::initWithTexture(CCTexture2D *pTexture, const CCRect& re
 {
     if (GAFSprite::initWithTexture(pTexture, rect, rotated))
     {
-
         _initialTexture = pTexture;
         _initialTexture->retain();
         _initialTextureRect = rect;

@@ -76,7 +76,7 @@ GAFSubobjectState* TagDefineAnimationFrames::extractState(GAFStream* in)
 
     state->objectIdRef = in->readU32();
     state->zIndex = in->readS32();
-    float alpha = in->readFloat();
+    state->colorMults()[GAFCTI_A] = in->readFloat();
 
     PrimiriveDeserializer::deserialize(in, &state->affineTransform);
 

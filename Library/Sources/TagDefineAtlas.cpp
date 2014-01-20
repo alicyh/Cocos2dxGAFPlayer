@@ -10,7 +10,7 @@
 
 void TagDefineAtlas::read(GAFStream* in, GAFAsset* ctx)
 {
-    GAFTextureAtlas* txAtlas = GAFTextureAtlas::create();
+    GAFTextureAtlas* txAtlas = new GAFTextureAtlas();
 
     txAtlas->setScale(in->readFloat());
 

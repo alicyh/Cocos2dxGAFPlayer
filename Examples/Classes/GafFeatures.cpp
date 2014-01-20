@@ -459,13 +459,12 @@ void GafFeatures::addObjectsToScene(int aCount)
 
             m_objectSequencesNames.clear();
 
-            CCDictionary* secDictionary = m_asset->getSequences();
-            if (secDictionary)
+            const AnimationSequences_t& secDictionary = m_asset->getAnimationSequences();
+            if (!secDictionary.empty())
             {
-                CCDictElement* pElement = 0;
-                CCDICT_FOREACH(secDictionary, pElement)
+                for (AnimationSequences_t::const_iterator i = secDictionary.begin(), e = secDictionary.end(); i != e; ++i)
                 {
-                    m_objectSequencesNames.push_back(pElement->getStrKey());
+                    m_objectSequencesNames.push_back(i->first);
                 }
             }
 

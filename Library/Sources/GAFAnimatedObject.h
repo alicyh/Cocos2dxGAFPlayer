@@ -59,11 +59,29 @@ public:
 
 class GAFAnimatedObject : public CCLayer, public GAFAnimation
 {
+protected:
+    GAFAnimatedObject();
+    unsigned int objectIdByObjectName(const char * aName);
+
+private:
+    GAFAsset * _asset;
+
+    SubObjects_t m_subObjects;
+    SubObjects_t m_masks;
+
+    CCDictionary   * _capturedObjects;
+    bool _animationsSelectorScheduled;
+    GAFFramePlayedDelegate * _framePlayedDelegate;
+    GAFAnimatedObjectControlDelegate * _controlDelegate;
+
+    int numberOfGlobalFramesForOneAnimationFrame();
+    int _extraFramesCounter;
+    PCAnimationFPSType _FPSType;
+
 public:
     ~GAFAnimatedObject();
     static GAFAnimatedObject * create(GAFAsset * anAsset);
-    static GAFAnimatedObject * create(const char * jsonPath);
-    static GAFAnimatedObject * createAndRun(const char * jsonPath, bool looped = false);
+    static GAFAnimatedObject * createAndRun(const std::string& gafPath, bool looped = false);
 
     bool init(GAFAsset * anAsset);
     void processAnimations(float dt);
@@ -80,10 +98,6 @@ public:
 
     void animatorDidPlayedFrame(GAFAnimator * anAnimator, int aFrameNo);
 
-    /// Returns subobject which has specified name assigned to it ("namedParts" section in config)
-    GAFSprite * subobjectByName(const char * name);
-    // call this function only if you really know what you do
-    GAFSprite * subobjectByRawName(const char * name);
     virtual void start();
     virtual void stop();
     virtual void processAnimation();
@@ -100,25 +114,6 @@ public:
     void setFramePlayedDelegate(GAFFramePlayedDelegate * delegate);
     void setControlDelegate(GAFAnimatedObjectControlDelegate * delegate);
     CCRect realBoundingBoxForCurrentFrame();
-protected:
-    GAFAnimatedObject();
-    GAFSprite * subObjectForInnerObjectId(const char * anInnerObjectId);
-    std::string objectIdByObjectName(const char * aName);
-
-private:
-    GAFAsset * _asset;
-
-    SubObjects_t m_subObjects;
-    SubObjects_t m_masks;
-
-    CCDictionary   * _capturedObjects;
-    bool _animationsSelectorScheduled;
-    GAFFramePlayedDelegate * _framePlayedDelegate;
-    GAFAnimatedObjectControlDelegate * _controlDelegate;
-
-    int numberOfGlobalFramesForOneAnimationFrame();
-    int _extraFramesCounter;
-    PCAnimationFPSType _FPSType;
 
 }; // GAFAnimatedObject
 

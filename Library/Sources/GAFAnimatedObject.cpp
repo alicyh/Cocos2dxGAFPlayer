@@ -58,15 +58,9 @@ GAFAnimatedObject * GAFAnimatedObject::create(GAFAsset * anAsset)
     return NULL;
 }
 
-GAFAnimatedObject * GAFAnimatedObject::create(const char * jsonPath)
+GAFAnimatedObject * GAFAnimatedObject::createAndRun(const std::string& gafPath, bool looped)
 {
-    GAFAsset * asset = GAFAsset::create(jsonPath);
-    return asset->createObject();
-}
-
-GAFAnimatedObject * GAFAnimatedObject::createAndRun(const char * jsonPath, bool looped)
-{
-    GAFAsset * asset = GAFAsset::create(jsonPath);
+    GAFAsset * asset = GAFAsset::create(gafPath);
     return asset->createObjectAndRun(looped);
 }
 
@@ -120,46 +114,11 @@ static bool util_ccarray_contains_string(CCArray * array, const std::string& str
     return false;
 }
 
-GAFSprite * GAFAnimatedObject::subobjectByName(const char * name)
-{
-    std::string rawName = objectIdByObjectName(name);
-    if (!rawName.length())
-    {
-        return NULL;
-    }
-    return subobjectByRawName(rawName.c_str());
-}
-
-GAFSprite * GAFAnimatedObject::subobjectByRawName(const char * name)
-{
-    /*if (!_subObjects)
-    {
-        return 0;
-    }
-    return (GAFSprite *)_subObjects->objectForKey(name);*/
-
-    return NULL;
-}
-
-GAFSprite * GAFAnimatedObject::subObjectForInnerObjectId(const char * anInnerObjectId)
-{
-    /*CCDictElement* pElement = 0;
-    CCDICT_FOREACH(_subObjects, pElement)
-    {
-        GAFSprite * obj = (GAFSprite*)pElement->getObject();
-        if (obj->objectId == anInnerObjectId)
-        {
-            return obj;
-        }
-    }*/
-    return NULL;
-}
-
-std::string GAFAnimatedObject::objectIdByObjectName(const char * name)
+unsigned int GAFAnimatedObject::objectIdByObjectName(const char * name)
 {
     if (!name)
     {
-        return 0;
+        return IDNONE;
     }
     /*CCDictionary * namedParts = _asset->namedParts();
     if (!namedParts)
@@ -175,7 +134,7 @@ std::string GAFAnimatedObject::objectIdByObjectName(const char * name)
             return pElement->getStrKey();
         }
     }*/
-    return std::string();
+    return 0;
 }
 
 void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const AnimationMasks_t& masks, const AnimationFrames_t& frames)
@@ -280,8 +239,8 @@ void GAFAnimatedObject::instantiateObject(const AnimationObjects_t& objs, const 
 
 bool GAFAnimatedObject::captureControlOverSubobjectNamed(const char * aName, GAFAnimatedObjectControlFlags aControlFlags)
 {
-    std::string objectId = objectIdByObjectName(aName);
-    if (0 == objectId.length())
+    unsigned int objectId = objectIdByObjectName(aName);
+    if (IDNONE == objectId)
     {
         return false;
     }
@@ -295,8 +254,8 @@ bool GAFAnimatedObject::captureControlOverSubobjectNamed(const char * aName, GAF
 
 void GAFAnimatedObject::releaseControlOverSubobjectNamed(const char * aName)
 {
-    std::string objectId = objectIdByObjectName(aName);
-    if (objectId.length())
+    unsigned int objectId = objectIdByObjectName(aName);
+    if (objectId != IDNONE)
     {
         _capturedObjects->removeObjectForKey(objectId);
     }
@@ -597,7 +556,6 @@ void GAFAnimatedObject::setControlDelegate(GAFAnimatedObjectControlDelegate * de
 {
     _controlDelegate = delegate;
 }
-
 
 static CCRect GAFCCRectUnion(const CCRect& src1, const CCRect& src2)
 {

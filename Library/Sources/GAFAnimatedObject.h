@@ -12,15 +12,6 @@ class GAFAnimator;
 class GAFAnimatedObject;
 class GAFAsset;
 
-namespace cocos2d
-{
-    class CCDictionary;
-    class CCArray;
-    class CCString;
-}
-
-using namespace cocos2d;
-
 enum PCAnimationFPSType
 {
     kGAFAnimationFPSType_15 = 15,

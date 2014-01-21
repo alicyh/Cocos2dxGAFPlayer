@@ -3,6 +3,8 @@
 #include "GAFFilterData.h"
 #include "GAFAsset.h"
 
+#include "GAFCollections.h"
+
 GAFSubobjectState::GAFSubobjectState()
 :
 objectIdRef(IDNONE),

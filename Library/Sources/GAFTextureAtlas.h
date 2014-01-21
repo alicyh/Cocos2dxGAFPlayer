@@ -9,7 +9,6 @@ namespace cocos2d
     class CCImage;
     class CCArray;
     class CCTexture2D;
-    class CCDictionary;
 }
 using namespace cocos2d;
 

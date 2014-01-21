@@ -6,14 +6,6 @@
 #define GAF_FIRST_FRAME_INDEX 0
 
 class GAFAsset;
-class GAFAnimatable;
-
-namespace cocos2d
-{
-    class CCDictionary;
-}
-
-using namespace cocos2d;
 
 enum AnimSetSequenceHint
 {
@@ -35,6 +27,7 @@ public:
     ~GAFAnimation();
     bool init(GAFAsset * anAnimationData);
 
+    
     virtual void processAnimation();
     virtual void start();
     virtual void pause();

@@ -4,9 +4,6 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{9ef8cf67-1c21-48c5-a77c-f1d0ec54bb9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\cJSON">
-      <UniqueIdentifier>{27cc8984-119a-435d-b22f-5093882653fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\ShadersPrecompiled">
       <UniqueIdentifier>{1169a39c-df34-4412-b3ee-3384e0c77c91}</UniqueIdentifier>
     </Filter>
@@ -66,13 +63,7 @@
     <ClCompile Include="Sources\GAFTextureEffectsConverter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\cJSON\cJSON.cpp">
-      <Filter>Sources\cJSON</Filter>
-    </ClCompile>
     <ClCompile Include="GAFPrecompiled.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\GAFJSONConverter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Sources\TagDefineAnimationFrames.cpp">
@@ -170,16 +161,7 @@
     <ClInclude Include="Sources\ShadersPrecompiled\kGAFSpriteWithAlphaShaderProgramCache.h">
       <Filter>Sources\ShadersPrecompiled</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\cJSON\cJSON.h">
-      <Filter>Sources\cJSON</Filter>
-    </ClInclude>
     <ClInclude Include="GAFPrecompiled.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\GAFJSONConverter.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\GAFJSONData.h">
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Sources\DefinitionTagBase.h">

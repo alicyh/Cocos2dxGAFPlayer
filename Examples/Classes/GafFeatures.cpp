@@ -3,8 +3,6 @@
 #include "GAFAsset.h"
 #include "GAFAnimatedObject.h"
 
-using namespace cocos2d;
-
 GafFeatures::GafFeatures()
     :
     m_asset(NULL),

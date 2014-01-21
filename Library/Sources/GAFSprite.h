@@ -16,8 +16,6 @@ typedef struct _gafBlendFuncSeparate
 
 } gafBlendFuncSeparate;
 
-using namespace cocos2d;
-
 /// @class GAFSprite 
 ///	This is utility class used by GAF playback. It does not perform rendering or use OpenGL.
 /// Instead, it references backend object via GAFSprite::getExternalPointer.

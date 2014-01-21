@@ -3,18 +3,10 @@
 #ifndef __GAF_ANIMATION_FRAME__
 #define __GAF_ANIMATION_FRAME__
 
-namespace cocos2d
-{
-    class CCDictionary;
-    class CCArray;
-}
-
 class GAFTextureAtlas;
 class GAFSubobjectState;
 
-using namespace cocos2d;
-
-class GAFAnimationFrame : public CCObject
+class GAFAnimationFrame
 {
 public:
     typedef std::vector<GAFSubobjectState*> SubobjectStates_t;

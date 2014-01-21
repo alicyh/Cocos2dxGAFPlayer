@@ -16,8 +16,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sources\GAFFile.cpp" />
-    <ClCompile Include="Sources\GAFJSONConverter.cpp" />
-    <ClCompile Include="Sources\cJSON\cJSON.cpp" />
     <ClCompile Include="Sources\GAFActionObject.cpp" />
     <ClCompile Include="Sources\GAFAnimatedObject.cpp" />
     <ClCompile Include="Sources\GAFAnimation.cpp" />
@@ -50,9 +48,6 @@
     <ClInclude Include="Sources\GAFCollections.h" />
     <ClInclude Include="Sources\GAFFile.h" />
     <ClInclude Include="Sources\GAFHeader.h" />
-    <ClInclude Include="Sources\GAFJSONConverter.h" />
-    <ClInclude Include="Sources\GAFJSONData.h" />
-    <ClInclude Include="Sources\cJSON\cJSON.h" />
     <ClInclude Include="Sources\GAFActionObject.h" />
     <ClInclude Include="Sources\GAFAnimatedObject.h" />
     <ClInclude Include="Sources\GAFAnimation.h" />

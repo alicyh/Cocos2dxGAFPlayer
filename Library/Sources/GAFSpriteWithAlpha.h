@@ -5,8 +5,6 @@
 
 #include "GAFSprite.h"
 
-using namespace cocos2d;
-
 #define kGAFSpriteWithAlphaShaderProgramCacheKey  "kGAFSpriteWithAlphaShaderProgramCache"
 
 class GAFSpriteWithAlpha : public GAFSprite

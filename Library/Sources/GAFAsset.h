@@ -5,11 +5,6 @@
 
 #include "GAFCollections.h"
 
-namespace cocos2d
-{
-    class CCDictionary;
-    class CCArray;
-}
 using namespace cocos2d;
 
 class GAFTextureAtlas;

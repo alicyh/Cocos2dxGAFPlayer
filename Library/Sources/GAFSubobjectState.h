@@ -37,14 +37,6 @@ public:
     int zIndex;
     CCAffineTransform affineTransform;
 
-    static GAFSubobjectState* createEmpty(unsigned int objectIdRef);
-
-    static GAFSubobjectState* create();
-    bool init();
-
-    bool initWithStateDictionary(CCDictionary * dict, const char * objectId);
-    bool initEmptyWinthObjectId(const char * objectId);
-
     bool initEmpty(unsigned int objectIdRef);
 
     ~GAFSubobjectState();

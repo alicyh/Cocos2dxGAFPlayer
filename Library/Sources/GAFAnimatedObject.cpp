@@ -90,24 +90,6 @@ bool GAFAnimatedObject::init(GAFAsset * anAsset)
     return true;
 }
 
-static bool util_ccarray_contains_string(CCArray * array, const std::string& str)
-{
-    if (!array)
-    {
-        return false;
-    }
-    for (unsigned int i = 0; i < array->count(); ++i)
-    {
-        CCString * obj = (CCString *)array->objectAtIndex(i);
-        if (obj->getCString() == str)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 unsigned int GAFAnimatedObject::objectIdByObjectName(const std::string& aName)
 {
     const NamedParts_t& np = _asset->getNamedParts();

@@ -176,7 +176,7 @@ void GAFStream::closeTag()
 
     if (record.expectedStreamPos != inputPosition)
     {
-        CCLOGERROR("Tag [%s] hasn't been correctly read, tag length is not respected. Expected [%d] but actually [%d]", Tags::toString(record.tagType), record.expectedStreamPos, inputPosition);
+        CCLOGERROR("Tag [%s] hasn't been correctly read, tag length is not respected. Expected [%d] but actually [%d]", Tags::toString(record.tagType).c_str(), record.expectedStreamPos, inputPosition);
 
         //assert("Tag hasn't been correctly read, tag length was not respected" && false);
     }

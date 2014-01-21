@@ -9,15 +9,6 @@
 #include "GAFStencilMaskSprite.h"
 #include "GAFFilterData.h"
 
-#ifdef max
-#undef max
-#endif
-
-static const char * kGAFBlurFilterName = "Fblur";
-static float const kAnimationFPS = 30.0;   // we keep this number 'almost' synchronized with web. The reason it's
-// not 31 fps is that we will have some animation artifacts when running
-// on 30/60 fps device.
-
 static CCAffineTransform GAF_CGAffineTransformCocosFormatFromFlashFormat(CCAffineTransform aTransform)
 {
     CCAffineTransform transform = aTransform;

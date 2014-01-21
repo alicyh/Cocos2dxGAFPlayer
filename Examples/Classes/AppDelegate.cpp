@@ -62,7 +62,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // if the frame's height is smaller than the height of medium resource size, select small resource.
     else
     {
-       // pDirector->setContentScaleFactor(320 / 1536);
+        //pDirector->setContentScaleFactor(320 / 1536);
     }
 
     //pDirector->setContentScaleFactor(2.f);

@@ -161,24 +161,13 @@ bool GafFeatures::init()
     addChild(pMenu, 10000);
     m_anim_index = 0;
 
-    GAFAsset* bAsset = new GAFAsset();
-    bAsset->initWithGAFFile("fireman.gaf");
 
-    m_bObject = bAsset->createObjectAndRun(true);
+    m_files.push_back("export_enemy_slime/export_enemy_slimeBin.gaf");
+    /*m_files.push_back("SampleAnimations/1/1.json");
+    m_files.push_back("SampleAnimations/3/3.json");
+    m_files.push_back("SampleAnimations/4/4.json");*/
 
-    m_bObject->setZOrder(100);
-    addChild(m_bObject);
-
-    m_bObject->setPosition(size.width * 0.5f, size.height * 0.5f);
-
-   /* assert(false);
-
-    m_jsons.push_back("SampleAnimations/2/2.json");
-    m_jsons.push_back("SampleAnimations/1/1.json");
-    m_jsons.push_back("SampleAnimations/3/3.json");
-    m_jsons.push_back("SampleAnimations/4/4.json");
-
-    addObjectsToScene(1);*/
+    addObjectsToScene(1);
     black(NULL);
 
     setTouchEnabled(true);
@@ -196,12 +185,12 @@ void GafFeatures::enableSequenceControllers( bool value )
 
 void GafFeatures::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 {
-//     if (!m_objects || !m_objects->count())
-//     {
-//         return;
-//     }
+    if (!m_objects || !m_objects->count())
+    {
+        return;
+    }
 
-    GAFAnimatedObject * node = m_bObject;//(GAFAnimatedObject*)m_objects->objectAtIndex(0);
+    GAFAnimatedObject * node = (GAFAnimatedObject*)m_objects->objectAtIndex(0);
     CCTouch * pTouch = (CCTouch*) pTouches->anyObject();
     CCPoint pt = pTouch->getLocation();
     node->setPosition(pt.x, pt.y);
@@ -239,7 +228,7 @@ void GafFeatures::prevSequence( CCObject* )
 
 void GafFeatures::next_anim(CCObject*)
 {
-    if (!m_jsons.size())
+    if (!m_files.size())
     {
         return;
     }
@@ -247,7 +236,7 @@ void GafFeatures::next_anim(CCObject*)
     cleanup(NULL);
     ++m_anim_index;
 
-    if (m_anim_index >= (int)m_jsons.size())
+    if (m_anim_index >= (int)m_files.size())
     {
         m_anim_index = 0;
     }
@@ -256,7 +245,7 @@ void GafFeatures::next_anim(CCObject*)
 
 void GafFeatures::prev_anim(CCObject*)
 {
-    if (!m_jsons.size())
+    if (!m_files.size())
     {
         return;
     }
@@ -265,7 +254,7 @@ void GafFeatures::prev_anim(CCObject*)
     --m_anim_index;
     if (m_anim_index < 0)
     {
-        m_anim_index = m_jsons.size() - 1;
+        m_anim_index = m_files.size() - 1;
     }
 
     addObjectsToScene(1);
@@ -427,7 +416,7 @@ void GafFeatures::addObjectsToScene(int aCount)
 
     if (!m_asset)
     {
-        m_asset =  GAFAsset::create(m_jsons[m_anim_index]);
+        m_asset = GAFAsset::create(m_files[m_anim_index]);
         CC_SAFE_RETAIN(m_asset);
     }
 

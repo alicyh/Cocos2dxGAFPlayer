@@ -30,7 +30,6 @@ private:
     typedef std::vector<std::string> ObjectSequencesNames_t;
     ObjectSequencesNames_t  m_objectSequencesNames;
     unsigned int m_currentSequence;
-    GAFAnimatedObject*  m_bObject;
 public:
     GafFeatures();
     ~GafFeatures();
@@ -78,7 +77,7 @@ public:
 private:	
     GAFAsset*              m_asset;
     CCArray*               m_objects;
-    std::vector<std::string> m_jsons;
+    std::vector<std::string> m_files;
     int                     m_anim_index;
 
 };

@@ -10,7 +10,10 @@ GAFAnimationFrame::GAFAnimationFrame()
 
 GAFAnimationFrame::~GAFAnimationFrame()
 {
-    GAF_RELEASE_ARRAY(GAFAnimationFrame::SubobjectStates_t, m_subObjectStates);
+    for (GAFAnimationFrame::SubobjectStates_t::iterator i = m_subObjectStates.begin(), e = m_subObjectStates.end(); i != e; ++i)
+    {
+        (*i)->release();
+    }
 }
 
 const GAFAnimationFrame::SubobjectStates_t& GAFAnimationFrame::getObjectStates() const

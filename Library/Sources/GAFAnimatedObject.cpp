@@ -32,6 +32,7 @@ GAFAnimatedObject::~GAFAnimatedObject()
     CC_SAFE_RELEASE(_asset);
 
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_subObjects);
+
     GAF_SAFE_RELEASE_MAP(SubObjects_t, m_masks);
 }
 
@@ -78,6 +79,7 @@ bool GAFAnimatedObject::init(GAFAsset * anAsset)
     _FPSType = kGAFAnimationFPSType_30;
     _extraFramesCounter = 0;
     _animationsSelectorScheduled = false;
+
     return true;
 }
 

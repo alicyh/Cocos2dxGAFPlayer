@@ -122,9 +122,6 @@ bool GafFeatures::init()
 #endif
     CCSize size = CCDirector::sharedDirector()->getWinSizeInPixels();
 
-    /*float s = size.height / 640.f;
-    if (s > 1) s = 1.f;*/
-
     float s = 1.f;
 
     float dp = 0.13f;
@@ -161,11 +158,10 @@ bool GafFeatures::init()
     addChild(pMenu, 10000);
     m_anim_index = 0;
 
-
-    m_files.push_back("export_enemy_slime/export_enemy_slimeBin.gaf");
-    /*m_files.push_back("SampleAnimations/1/1.json");
-    m_files.push_back("SampleAnimations/3/3.json");
-    m_files.push_back("SampleAnimations/4/4.json");*/
+    m_files.push_back("slime/slimeBin.gaf");
+    m_files.push_back("skeleton/skeletonBin.gaf");
+    m_files.push_back("ufo/ufoBin.gaf");
+    m_files.push_back("jester/jesterBin.gaf");
 
     addObjectsToScene(1);
     black(NULL);
